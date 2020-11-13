@@ -11,6 +11,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.greenwich.madpropertypal.model.Property;
+import com.greenwich.madpropertypal.repository.DatabaseHelper;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class confirmAddPropertyDetailsPopUp extends Activity {
 
 
@@ -28,6 +34,8 @@ public class confirmAddPropertyDetailsPopUp extends Activity {
     private TextView bedroomCount;
     private TextView bathroomCount;
     private TextView askingPrice;
+    private TextView localAmenities;
+    private TextView description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +54,7 @@ public class confirmAddPropertyDetailsPopUp extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int) (width * .9), (int) (height * 0.8));
+        getWindow().setLayout((int) (width * .9), (int) (height * 0.9));
 
 
 
@@ -81,20 +89,86 @@ public class confirmAddPropertyDetailsPopUp extends Activity {
         bedroomCount = findViewById(R.id.bedroomCount);
         bathroomCount = findViewById(R.id.bathroomCount);
         askingPrice = findViewById(R.id.askingPrice);
+        localAmenities = findViewById(R.id.localAmenities);
+        description = findViewById(R.id.description);
 
-        String[] requiredFieldsInput = getIntent().getStringArrayExtra("requiredFieldsInput");
 
-        propertyName.setText(requiredFieldsInput[0]);
-        propertyNumber.setText(requiredFieldsInput[1]);
-        propertyType.setText(requiredFieldsInput[2]);
-        leaseType.setText(requiredFieldsInput[3]);
-        size.setText(requiredFieldsInput[4] + " m²");
-        street.setText(requiredFieldsInput[5]);
-        postcode.setText(requiredFieldsInput[6]);
-        city.setText(requiredFieldsInput[7]);
-        bedroomCount.setText(requiredFieldsInput[8]);
-        bathroomCount.setText(requiredFieldsInput[9]);
-        askingPrice.setText("£" + requiredFieldsInput[10]);
+//        String[] requiredFieldsInput = getIntent().getStringArrayExtra("requiredFieldsInput");
+//
+//        propertyName.setText(requiredFieldsInput[0]);
+//        propertyNumber.setText(requiredFieldsInput[1]);
+//        propertyType.setText(requiredFieldsInput[2]);
+//        leaseType.setText(requiredFieldsInput[3]);
+//        size.setText(requiredFieldsInput[4] + " m²");
+//        street.setText(requiredFieldsInput[5]);
+//        postcode.setText(requiredFieldsInput[6]);
+//        city.setText(requiredFieldsInput[7]);
+//        bedroomCount.setText(requiredFieldsInput[8]);
+//        bathroomCount.setText(requiredFieldsInput[9]);
+//        askingPrice.setText("£" + requiredFieldsInput[10]);
+
+
+//
+//        if(getIntent().hasExtra("description")){
+//            description.setText(getIntent().getStringExtra("description"));
+//        }
+//
+//        if(getIntent().hasExtra("amenities")){
+//            ArrayList<String> amenitiesList = getIntent().getStringArrayListExtra("amenities");
+//
+//            if(amenitiesList.size() > 0){
+//                String amenitiesFormatted = "";
+//                for(String amenity : amenitiesList){
+//                    amenitiesFormatted += (amenity + ", ");
+//                }
+//                System.out.println("amenities  list" + amenitiesList);
+//                System.out.println("formatted amenities " + amenitiesFormatted);
+//                localAmenities.setText(amenitiesFormatted.substring(0,amenitiesFormatted.length()-2));
+//            }
+//        }
+
+
+        if(getIntent().hasExtra("property")){
+
+            Property property =  getIntent().getParcelableExtra("property");
+
+
+            propertyName.setText(property.getName());
+            propertyNumber.setText(property.getNumber());
+            propertyType.setText(property.getType());
+            leaseType.setText(property.getLeaseType());
+            size.setText(property.getSize() + " m²");
+            street.setText(property.getStreet());
+            postcode.setText(property.getPostcode());
+            city.setText(property.getCity());
+            bedroomCount.setText("" + property.getBedroomCount());
+            bathroomCount.setText("" + property.getBathroomCount());
+            askingPrice.setText("£" + property.getAskingPrice());
+            description.setText(property.getDescription());
+
+
+            if(property.getLocalAmenities().size() > 0){
+                String amenitiesFormatted = "";
+                for(String amenity : property.getLocalAmenities()){
+                    amenitiesFormatted += (amenity + ", ");
+                }
+                System.out.println("amenities  list" + property.getLocalAmenities());
+                System.out.println("formatted amenities " + amenitiesFormatted);
+                localAmenities.setText(amenitiesFormatted.substring(0,amenitiesFormatted.length()-2));
+            }
+//            propertyName.setText(pro);
+//            propertyNumber.setText(requiredFieldsInput[1]);
+//            propertyType.setText(requiredFieldsInput[2]);
+//            leaseType.setText(requiredFieldsInput[3]);
+//            size.setText(requiredFieldsInput[4] + " m²");
+//            street.setText(requiredFieldsInput[5]);
+//            postcode.setText(requiredFieldsInput[6]);
+//            city.setText(requiredFieldsInput[7]);
+//            bedroomCount.setText(requiredFieldsInput[8]);
+//            bathroomCount.setText(requiredFieldsInput[9]);
+//            askingPrice.setText("£" + requiredFieldsInput[10]);
+        }
+
 
 
     }
@@ -106,5 +180,8 @@ public class confirmAddPropertyDetailsPopUp extends Activity {
     public void confirmButtonClicked(){
 
         // persist in database
+        DatabaseHelper databaseHelper = new DatabaseHelper(confirmAddPropertyDetailsPopUp.this);
+
+        databaseHelper.getWritableDatabase();
     }
 }

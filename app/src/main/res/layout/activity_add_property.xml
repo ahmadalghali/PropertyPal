@@ -8,6 +8,7 @@
     android:layout_width="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/app_background"
@@ -62,7 +63,7 @@
             android:hint="Asking Price"
             android:inputType="numberDecimal"
             android:textColor="#fff"
-            android:textColorHint="#fff"
+            android:textColorHint="#8C8C8C"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
@@ -117,7 +118,7 @@
             android:hint="City"
             android:inputType="textPersonName"
             android:textColor="#Fff"
-            android:textColorHint="#FFFFFF"
+            android:textColorHint="#63FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etPostcode" />
 
@@ -132,7 +133,7 @@
             android:hint="Postcode"
             android:inputType="textPersonName"
             android:textColor="#Fff"
-            android:textColorHint="#FFFFFF"
+            android:textColorHint="#63FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etStreet" />
 
@@ -147,7 +148,7 @@
             android:hint="Street"
             android:inputType="textPersonName"
             android:textColor="#Fff"
-            android:textColorHint="#FFFFFF"
+            android:textColorHint="#63FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -162,7 +163,7 @@
             android:hint="Property Name"
             android:inputType="textPersonName"
             android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
+            android:textColorHint="#63FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etPropertyNumber" />
 
@@ -177,7 +178,7 @@
             android:hint="Property No."
             android:inputType="textPersonName"
             android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
+            android:textColorHint="#63FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -202,9 +203,10 @@
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:ems="10"
+            android:hint="1"
             android:inputType="number"
             android:textColor="#Fff"
-            android:textColorHint="#FFFFFF"
+            android:textColorHint="#63FFFFFF"
             app:layout_constraintStart_toEndOf="@+id/textView9"
             app:layout_constraintTop_toTopOf="@+id/textView9" />
 
@@ -215,9 +217,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:ems="10"
+            android:hint="1"
             android:inputType="number"
             android:textColor="#Fff"
-            android:textColorHint="#FFFFFF"
+            android:textColorHint="#63FFFFFF"
             app:layout_constraintStart_toEndOf="@+id/textView10"
             app:layout_constraintTop_toTopOf="@+id/textView10" />
 
@@ -226,9 +229,10 @@
             android:layout_width="111dp"
             android:layout_height="42dp"
             android:ems="10"
+            android:hint="e.g. 100"
             android:inputType="number"
             android:textColor="#Fff"
-            android:textColorHint="#FFFFFF"
+            android:textColorHint="#63FFFFFF"
             app:layout_constraintStart_toEndOf="@+id/textView11"
             app:layout_constraintTop_toTopOf="@+id/textView11" />
 
@@ -278,7 +282,7 @@
             android:hint="Local Amenities e.g. gym"
             android:inputType="textPersonName"
             android:textColor="#fff"
-            android:textColorHint="#fff"
+            android:textColorHint="#8C8C8C"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etAskingPrice" />
@@ -293,16 +297,6 @@
             app:layout_constraintStart_toEndOf="@+id/etAmenity"
             app:layout_constraintTop_toTopOf="@+id/etAmenity" />
 
-        <ListView
-            android:id="@+id/localAmentiesListView"
-            android:layout_width="310dp"
-            android:layout_height="129dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="30dp"
-            android:background="#FFFFFF"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etAmenity" />
 
         <TextView
             android:id="@+id/textView14"
@@ -310,28 +304,31 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="32dp"
             android:text="Description:"
             android:textColor="#fff"
             android:textColorHint="#fff"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/localAmentiesListView" />
+            app:layout_constraintTop_toBottomOf="@+id/localAmenitiesListView" />
 
 
         <EditText
             android:id="@+id/etDescription"
-            android:layout_width="377dp"
-            android:layout_height="111dp"
+            android:layout_width="385dp"
+            android:layout_height="135dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="12dp"
-            android:background="#ffffff"
-            android:shadowColor="#D1D1D1"
+            android:layout_marginTop="16dp"
+            android:background="#FFFFFF"
+            android:gravity="top|left"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:maxLines="10"
+            android:scrollbars="vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView14"></EditText>
-
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
         <Button
             android:id="@+id/cancelButton"
             android:layout_width="385dp"
@@ -342,6 +339,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addPropertyButton" />
+
+        <ListView
+            android:id="@+id/localAmenitiesListView"
+            android:layout_width="347dp"
+            android:layout_height="276dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:background="#FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etAmenity" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
