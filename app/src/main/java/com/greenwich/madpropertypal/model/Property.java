@@ -3,10 +3,16 @@ package com.greenwich.madpropertypal.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import java.io.Serializable;
 import java.util.List;
 
-public class Property implements Parcelable {
+@Entity
+public class Property implements Parcelable, Serializable {
 
+    @PrimaryKey
     private int id;
     private String name;
     private String number;

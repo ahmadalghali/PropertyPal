@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public DatabaseHelper(@Nullable Context context) {
-        super(context, PROPERTY_TABLE + ".db", null, 1);
+        super(context,   "madPropertyPal.db", null, 1);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean addOne(Property property){
+    public boolean insertProperty(Property property){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

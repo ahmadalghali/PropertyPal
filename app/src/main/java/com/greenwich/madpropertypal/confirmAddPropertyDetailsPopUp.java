@@ -10,7 +10,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.greenwich.madpropertypal.model.Property;
 import com.greenwich.madpropertypal.repository.DatabaseHelper;
 
@@ -37,6 +39,8 @@ public class confirmAddPropertyDetailsPopUp extends Activity {
     private TextView localAmenities;
     private TextView description;
 
+    private Property property;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +48,7 @@ public class confirmAddPropertyDetailsPopUp extends Activity {
         //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-//Remove notification bar
+    //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_confirm_add_property_details_pop_up);
 
@@ -93,44 +97,11 @@ public class confirmAddPropertyDetailsPopUp extends Activity {
         description = findViewById(R.id.description);
 
 
-//        String[] requiredFieldsInput = getIntent().getStringArrayExtra("requiredFieldsInput");
-//
-//        propertyName.setText(requiredFieldsInput[0]);
-//        propertyNumber.setText(requiredFieldsInput[1]);
-//        propertyType.setText(requiredFieldsInput[2]);
-//        leaseType.setText(requiredFieldsInput[3]);
-//        size.setText(requiredFieldsInput[4] + " m²");
-//        street.setText(requiredFieldsInput[5]);
-//        postcode.setText(requiredFieldsInput[6]);
-//        city.setText(requiredFieldsInput[7]);
-//        bedroomCount.setText(requiredFieldsInput[8]);
-//        bathroomCount.setText(requiredFieldsInput[9]);
-//        askingPrice.setText("£" + requiredFieldsInput[10]);
-
-
-//
-//        if(getIntent().hasExtra("description")){
-//            description.setText(getIntent().getStringExtra("description"));
-//        }
-//
-//        if(getIntent().hasExtra("amenities")){
-//            ArrayList<String> amenitiesList = getIntent().getStringArrayListExtra("amenities");
-//
-//            if(amenitiesList.size() > 0){
-//                String amenitiesFormatted = "";
-//                for(String amenity : amenitiesList){
-//                    amenitiesFormatted += (amenity + ", ");
-//                }
-//                System.out.println("amenities  list" + amenitiesList);
-//                System.out.println("formatted amenities " + amenitiesFormatted);
-//                localAmenities.setText(amenitiesFormatted.substring(0,amenitiesFormatted.length()-2));
-//            }
-//        }
 
 
         if(getIntent().hasExtra("property")){
 
-            Property property =  getIntent().getParcelableExtra("property");
+            property =  getIntent().getParcelableExtra("property");
 
 
             propertyName.setText(property.getName());
@@ -156,17 +127,7 @@ public class confirmAddPropertyDetailsPopUp extends Activity {
                 System.out.println("formatted amenities " + amenitiesFormatted);
                 localAmenities.setText(amenitiesFormatted.substring(0,amenitiesFormatted.length()-2));
             }
-//            propertyName.setText(pro);
-//            propertyNumber.setText(requiredFieldsInput[1]);
-//            propertyType.setText(requiredFieldsInput[2]);
-//            leaseType.setText(requiredFieldsInput[3]);
-//            size.setText(requiredFieldsInput[4] + " m²");
-//            street.setText(requiredFieldsInput[5]);
-//            postcode.setText(requiredFieldsInput[6]);
-//            city.setText(requiredFieldsInput[7]);
-//            bedroomCount.setText(requiredFieldsInput[8]);
-//            bathroomCount.setText(requiredFieldsInput[9]);
-//            askingPrice.setText("£" + requiredFieldsInput[10]);
+
         }
 
 
@@ -179,9 +140,15 @@ public class confirmAddPropertyDetailsPopUp extends Activity {
 
     public void confirmButtonClicked(){
 
-        // persist in database
-        DatabaseHelper databaseHelper = new DatabaseHelper(confirmAddPropertyDetailsPopUp.this);
+        try{
+            // persist in database
+            DatabaseHelper databaseHelper = new DatabaseHelper(confirmAddPropertyDetailsPopUp.this);
 
-        databaseHelper.getWritableDatabase();
+            databaseHelper.insertProperty(property);
+        } catch(Exception e){
+            Toast.makeText(this, "Error inserting property ", Toast.LENGTH_LONG).show();
+        }
+
+
     }
 }

@@ -195,9 +195,7 @@ public class AddPropertyActivity extends AppCompatActivity {
             Property property = new Property(-1, propertyName,propertyNumber,propertyType,leaseType,Integer.parseInt(size),street,postcode,city,Integer.parseInt(bedroomCount),Integer.parseInt(bathroomCount),Double.parseDouble(askingPrice), amenitiesList, description);
             intent.putExtra("property", property);
 
-//            intent.putExtra("requiredFieldsInput", requiredFieldsInput);
-//            intent.putExtra("description", description);
-//            intent.putStringArrayListExtra("amenities", amenitiesList);
+
             startActivity(intent);
         }
 
