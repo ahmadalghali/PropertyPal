@@ -25,7 +25,28 @@
         <item>Short let</item>
         <item>Long let</item>
     </string-array>
-    <string name="title_activity_scrolling_add_property_popup">ScrollingActivity</string>
+
+    <string-array name="properties">
+        <item>Property 1</item>
+        <item>Property 2</item>
+        <item>Property 3</item>
+        <item>Property 4</item>
+        <item>Property 5</item>
+        <item>Property 6</item>
+        <item>Property 7</item>
+    </string-array>
+
+    <string-array name="propertiesDescription">
+        <item>Description 1</item>
+        <item>Description 2</item>
+        <item>Description 3</item>
+        <item>Description 4</item>
+        <item>Description 5</item>
+        <item>Description 6</item>
+        <item>Description 7</item>
+    </string-array>
+    
+    
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -115,5 +136,9 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    
+    
+    
+    
     <string name="action_settings">Settings</string>
 </resources>

@@ -11,32 +11,20 @@
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-
-        <activity android:name=".ScrollConfirmPropertyDetailsPopup"
-            android:theme="@style/PopUpTheme">
-
-        </activity>
-
+        <activity android:name=".view.MyPropertiesActivity"></activity>
         <activity
-            android:name=".confirmAddPropertyDetailsPopUp"
-            android:theme="@style/PopUpTheme" >
-
-
-        </activity>
-
+            android:name=".view.confirmAddPropertyDetailsPopUp"
+            android:theme="@style/PopUpTheme"></activity>
         <activity
-            android:name=".AddPropertyActivity"
-            android:parentActivityName=".MainActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:name=".view.AddPropertyActivity"
+            android:parentActivityName=".view.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".view.MainActivity"></activity>
     </application>
 
 </manifest>

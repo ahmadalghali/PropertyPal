@@ -4,8 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".view.MainActivity"
     android:background="@drawable/app_background">
+
+    <Button
+        android:id="@+id/myPropertiesButton"
+        android:layout_width="302dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:text="My Properties"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/findPropertiesButton" />
 
     <Button
         android:id="@+id/findPropertiesButton"

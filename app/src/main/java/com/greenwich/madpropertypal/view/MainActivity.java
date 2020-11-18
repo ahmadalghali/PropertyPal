@@ -1,6 +1,4 @@
-package com.greenwich.madpropertypal;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.greenwich.madpropertypal.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +7,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.greenwich.madpropertypal.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,18 +1,28 @@
 package com.greenwich.madpropertypal.repository;
 
-import android.content.Context;
+import android.app.Application;
 
-import androidx.room.Room;
+import androidx.lifecycle.LiveData;
+
+import com.greenwich.madpropertypal.model.Property;
+
+import java.util.List;
 
 public class PropertyRepository {
+
+
+    private PropertyDao propertyDao;
+    private LiveData<List<Property>> allProperties;
 
     private String DATABASE_NAME = "property.db";
 
 
-    private PropertyDatabase propertyDatabase;
+    public PropertyRepository(Application application){
+        PropertyDatabase propertyDatabase =  PropertyDatabase.getPropertyDatabaseInstance(application);
 
-    public PropertyRepository(Context context){
-        propertyDatabase = Room.databaseBuilder(context,PropertyDatabase.class, DATABASE_NAME).build();
+        propertyDao = propertyDatabase.propertyDao();
+
+        allProperties = propertyDao.getAllProperties();
     }
 
 }

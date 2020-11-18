@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 public class Property implements Parcelable, Serializable {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
     private String number;
