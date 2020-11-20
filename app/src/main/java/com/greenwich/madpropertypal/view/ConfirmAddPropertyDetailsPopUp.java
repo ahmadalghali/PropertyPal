@@ -1,6 +1,7 @@
 package com.greenwich.madpropertypal.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -11,11 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.greenwich.madpropertypal.R;
+import com.greenwich.madpropertypal.data.PropertyRepository;
 import com.greenwich.madpropertypal.model.Property;
-import com.greenwich.madpropertypal.repository.DatabaseHelper;
 
-public class confirmAddPropertyDetailsPopUp extends Activity {
+public class ConfirmAddPropertyDetailsPopUp extends Activity {
 
+
+    private PropertyRepository propertyRepository;
 
     private Button editButton;
     private Button confirmButton;
@@ -55,6 +58,11 @@ public class confirmAddPropertyDetailsPopUp extends Activity {
 
         getWindow().setLayout((int) (width * .9), (int) (height * 0.9));
 
+
+
+//        propertyViewModel = new ViewModelProvider(this).get(PropertyViewModel.class);
+
+        propertyRepository = new PropertyRepository(this.getApplication());
 
 
         editButton = findViewById(R.id.editButton);
@@ -113,15 +121,15 @@ public class confirmAddPropertyDetailsPopUp extends Activity {
             description.setText(property.getDescription());
 
 
-            if(property.getLocalAmenities().size() > 0){
-                String amenitiesFormatted = "";
-                for(String amenity : property.getLocalAmenities()){
-                    amenitiesFormatted += (amenity + ", ");
-                }
-                System.out.println("amenities  list" + property.getLocalAmenities());
-                System.out.println("formatted amenities " + amenitiesFormatted);
-                localAmenities.setText(amenitiesFormatted.substring(0,amenitiesFormatted.length()-2));
-            }
+//            if(property.getLocalAmenities().size() > 0){
+//                String amenitiesFormatted = "";
+//                for(String amenity : property.getLocalAmenities()){
+//                    amenitiesFormatted += (amenity + ", ");
+//                }
+//                System.out.println("amenities  list" + property.getLocalAmenities());
+//                System.out.println("formatted amenities " + amenitiesFormatted);
+//                localAmenities.setText(amenitiesFormatted.substring(0,amenitiesFormatted.length()-2));
+//            }
 
         }
 
@@ -137,11 +145,19 @@ public class confirmAddPropertyDetailsPopUp extends Activity {
 
         try{
             // persist in database
-            DatabaseHelper databaseHelper = new DatabaseHelper(confirmAddPropertyDetailsPopUp.this);
 
-            databaseHelper.insertProperty(property);
+
+            propertyRepository.insert(property);
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+            Toast.makeText(this, "Property saved.", Toast.LENGTH_LONG).show();
+
+
+//            DatabaseHelper databaseHelper = new DatabaseHelper(confirmAddPropertyDetailsPopUp.this);
+//
+//            databaseHelper.insertProperty(property);
         } catch(Exception e){
-            Toast.makeText(this, "Error inserting property ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Error saving property ", Toast.LENGTH_LONG).show();
         }
 
 

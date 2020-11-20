@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -184,10 +185,10 @@ public class AddPropertyActivity extends AppCompatActivity {
         } else{
 
             // get input and display in popup
-            Intent intent = new Intent(AddPropertyActivity.this, confirmAddPropertyDetailsPopUp.class);
+            Intent intent = new Intent(AddPropertyActivity.this, ConfirmAddPropertyDetailsPopUp.class);
 
-            Property property = new Property(-1, propertyName,propertyNumber,propertyType,leaseType,Integer.parseInt(size),street,postcode,city,Integer.parseInt(bedroomCount),Integer.parseInt(bathroomCount),Double.parseDouble(askingPrice), amenitiesList, description);
-            intent.putExtra("property", property);
+            Property property = new Property(propertyName,propertyNumber,propertyType,leaseType,Integer.parseInt(size),street,postcode,city,Integer.parseInt(bedroomCount),Integer.parseInt(bathroomCount),Double.parseDouble(askingPrice), description);
+            intent.putExtra("property", (Parcelable) property);
 
 
             startActivity(intent);

@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button addPropertyButton;
 
+    Button myPropertiesButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,12 +33,6 @@ public class MainActivity extends AppCompatActivity {
 //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-
-
-
-
-
-
 
 
 
@@ -57,11 +53,25 @@ public class MainActivity extends AppCompatActivity {
                openAddPropertyActivity();
             }
         });
+
+        myPropertiesButton = findViewById(R.id.myPropertiesButton);
+
+        myPropertiesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMyPropertiesActivity();
+            }
+        });
     }
 
 
     public void openAddPropertyActivity(){
         Intent intent = new Intent(this, AddPropertyActivity.class);
+        startActivity(intent);
+    }
+
+    public void openMyPropertiesActivity(){
+        Intent intent = new Intent(this, MyPropertiesActivity.class);
         startActivity(intent);
     }
 }

@@ -1,4 +1,4 @@
-package com.greenwich.madpropertypal.repository;
+package com.greenwich.madpropertypal.data;
 
 import android.content.Context;
 
@@ -21,7 +21,6 @@ public abstract class PropertyDatabase extends RoomDatabase {
         if(propertyDatabaseInstance == null){
             propertyDatabaseInstance = Room.databaseBuilder(context.getApplicationContext(),PropertyDatabase.class,
                     "madPropertyPal")
-                    .allowMainThreadQueries()
                     .fallbackToDestructiveMigration()
                     .build();
         }

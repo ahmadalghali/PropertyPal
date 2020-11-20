@@ -1,4 +1,4 @@
-package com.greenwich.madpropertypal.repository;
+package com.greenwich.madpropertypal.data;
 
 import android.content.ContentValues;
 import android.content.Context;

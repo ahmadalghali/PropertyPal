@@ -7,7 +7,6 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 public class Property implements Parcelable, Serializable {
@@ -28,12 +27,11 @@ public class Property implements Parcelable, Serializable {
     private int bathroomCount;
 
     private double askingPrice;
-    private List<String> localAmenities;
+//    private List<String> localAmenities;
 
     private String description;
 
-    public Property(int id, String name, String number, String type, String leaseType, int size, String street, String postcode, String city, int bedroomCount, int bathroomCount, double askingPrice, List<String> localAmenities, String description) {
-        this.id = id;
+    public Property(String name, String number, String type, String leaseType, int size, String street, String postcode, String city, int bedroomCount, int bathroomCount, double askingPrice,  String description) {
         this.name = name;
         this.number = number;
         this.type = type;
@@ -45,7 +43,7 @@ public class Property implements Parcelable, Serializable {
         this.bedroomCount = bedroomCount;
         this.bathroomCount = bathroomCount;
         this.askingPrice = askingPrice;
-        this.localAmenities = localAmenities;
+//        this.localAmenities = localAmenities;
         this.description = description;
     }
 
@@ -62,7 +60,7 @@ public class Property implements Parcelable, Serializable {
         bedroomCount = in.readInt();
         bathroomCount = in.readInt();
         askingPrice = in.readDouble();
-        localAmenities = in.createStringArrayList();
+//        localAmenities = in.createStringArrayList();
         description = in.readString();
     }
 
@@ -80,7 +78,7 @@ public class Property implements Parcelable, Serializable {
         dest.writeInt(bedroomCount);
         dest.writeInt(bathroomCount);
         dest.writeDouble(askingPrice);
-        dest.writeStringList(localAmenities);
+//        dest.writeStringList(localAmenities);
         dest.writeString(description);
     }
 
@@ -197,13 +195,13 @@ public class Property implements Parcelable, Serializable {
         this.askingPrice = askingPrice;
     }
 
-    public List<String> getLocalAmenities() {
-        return localAmenities;
-    }
-
-    public void setLocalAmenities(List<String> localAmenities) {
-        this.localAmenities = localAmenities;
-    }
+//    public List<String> getLocalAmenities() {
+//        return localAmenities;
+//    }
+//
+//    public void setLocalAmenities(List<String> localAmenities) {
+//        this.localAmenities = localAmenities;
+//    }
 
     public String getDescription() {
         return description;
@@ -229,7 +227,6 @@ public class Property implements Parcelable, Serializable {
                 ", bedroomCount=" + bedroomCount +
                 ", bathroomCount=" + bathroomCount +
                 ", askingPrice=" + askingPrice +
-                ", localAmenities=" + localAmenities +
                 ", description='" + description + '\'' +
                 '}';
     }
