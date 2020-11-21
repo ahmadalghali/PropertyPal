@@ -16,12 +16,12 @@
 
 
         <Button
-            android:id="@+id/addPropertyButton"
+            android:id="@+id/saveButton"
             android:layout_width="385dp"
             android:layout_height="46dp"
             android:layout_marginTop="32dp"
             android:background="#FFC107"
-            android:text="Add Property"
+            android:text="Save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.615"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
             android:layout_marginLeft="4dp"
             android:layout_marginTop="28dp"
             android:fontFamily="sans-serif-black"
-            android:text="Add Property:"
+            android:text="Edit Property:"
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/imageView3"
@@ -66,7 +66,7 @@
             android:textColorHint="#8C8C8C"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11"
-            android:text="450000"/>
+           />
 
         <TextView
             android:id="@+id/textView11"
@@ -122,7 +122,7 @@
             android:textColorHint="#63FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etPostcode"
-            android:text="London"/>
+            />
 
         <EditText
             android:id="@+id/etPostcode"
@@ -138,7 +138,7 @@
             android:textColorHint="#63FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etStreet"
-            android:text="W2 6AJ"/>
+           />
 
         <EditText
             android:id="@+id/etStreet"
@@ -154,7 +154,7 @@
             android:textColorHint="#63FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView8"
-            android:text="Downs avenue"/>
+            />
 
         <EditText
             android:id="@+id/etPropertyName"
@@ -170,7 +170,7 @@
             android:textColorHint="#63FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etPropertyNumber"
-            android:text="Sunfields"/>
+         />
 
         <EditText
             android:id="@+id/etPropertyNumber"
@@ -186,7 +186,7 @@
             android:textColorHint="#63FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6"
-            android:text="107"/>
+        />
 
         <TextView
             android:id="@+id/textView8"
@@ -215,7 +215,7 @@
             android:textColorHint="#63FFFFFF"
             app:layout_constraintStart_toEndOf="@+id/textView9"
             app:layout_constraintTop_toTopOf="@+id/textView9"
-            android:text="1"/>
+            />
 
         <EditText
             android:id="@+id/etBathroomCount"
@@ -230,7 +230,7 @@
             android:textColorHint="#63FFFFFF"
             app:layout_constraintStart_toEndOf="@+id/textView10"
             app:layout_constraintTop_toTopOf="@+id/textView10"
-            android:text="1"/>
+           />
 
         <EditText
             android:id="@+id/etPropertySizeMetersSquared"
@@ -243,7 +243,7 @@
             android:textColorHint="#63FFFFFF"
             app:layout_constraintStart_toEndOf="@+id/textView11"
             app:layout_constraintTop_toTopOf="@+id/textView11"
-            android:text="250"/>
+           />
 
         <TextView
             android:id="@+id/textView12"
@@ -338,16 +338,17 @@
             android:scrollbars="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
         <Button
-            android:id="@+id/cancelButton"
+            android:id="@+id/discardChangesButton"
             android:layout_width="385dp"
             android:layout_height="46dp"
             android:layout_marginTop="10dp"
             android:background="#989898"
-            android:text="Cancel"
+            android:text="Discard Changes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addPropertyButton" />
+            app:layout_constraintTop_toBottomOf="@+id/saveButton" />
 
         <ListView
             android:id="@+id/localAmenitiesListView"

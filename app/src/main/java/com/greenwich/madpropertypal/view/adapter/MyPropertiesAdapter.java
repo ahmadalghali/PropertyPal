@@ -14,21 +14,30 @@ import com.greenwich.madpropertypal.model.Property;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapter.MyPropertiesViewHolder> {
+public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapter.MyPropertiesViewHolder>  {
 
 
-//    Context context;
     private List<Property> properties = new ArrayList<>();
+
+    private OnPropertyClickedListener onPropertyClickedListener;
+
+
+
 
     public MyPropertiesAdapter(){
 
 
     }
+
+    public void setOnPropertyClickedListener(OnPropertyClickedListener onPropertyClickedListener) {
+        this.onPropertyClickedListener = onPropertyClickedListener;
+    }
+
     @NonNull
     @Override
     public MyPropertiesAdapter.MyPropertiesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_property_item,parent,false);
-        return new MyPropertiesViewHolder(itemView);
+        return new MyPropertiesViewHolder(itemView, onPropertyClickedListener);
     }
 
     @Override
@@ -55,10 +64,28 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
 
         private TextView tvPropertyName;
 
-        public MyPropertiesViewHolder(@NonNull View itemView) {
+        public MyPropertiesViewHolder(@NonNull View itemView, final OnPropertyClickedListener onPropertyClickedListener) {
             super(itemView);
             tvPropertyName = itemView.findViewById(R.id.propertyName);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if(onPropertyClickedListener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            onPropertyClickedListener.onPropertyClicked(position);
+                        }
+                    }
+                }
+            });
+
         }
+    }
+
+    public interface OnPropertyClickedListener {
+
+        void onPropertyClicked(int position);
     }
 }

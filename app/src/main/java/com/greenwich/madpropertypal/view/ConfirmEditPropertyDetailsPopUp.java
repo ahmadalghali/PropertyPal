@@ -15,7 +15,7 @@ import com.greenwich.madpropertypal.R;
 import com.greenwich.madpropertypal.data.PropertyRepository;
 import com.greenwich.madpropertypal.model.Property;
 
-public class ConfirmAddPropertyDetailsPopUp extends Activity {
+public class ConfirmEditPropertyDetailsPopUp extends Activity {
 
 
     private PropertyRepository propertyRepository;
@@ -39,15 +39,18 @@ public class ConfirmAddPropertyDetailsPopUp extends Activity {
 
     private Property property;
 
+    private static final String PROPERTY_EXTRA = "com.greenwich.madpropertypal.view.PROPERTY_EXTRA";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-         //Remove notification bar
+        //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_confirm_add_property_details_pop_up);
+        setContentView(R.layout.activity_confirm_edit_property_details_pop_up);
 
 
         DisplayMetrics dm = new DisplayMetrics();
@@ -96,9 +99,9 @@ public class ConfirmAddPropertyDetailsPopUp extends Activity {
 
 
 
-        if(getIntent().hasExtra("property")){
+        if(getIntent().hasExtra(PROPERTY_EXTRA)){
 
-            property =  getIntent().getParcelableExtra("property");
+            property = getIntent().getParcelableExtra(PROPERTY_EXTRA);
 
 
             propertyName.setText(property.getName());
@@ -132,29 +135,23 @@ public class ConfirmAddPropertyDetailsPopUp extends Activity {
     }
 
     public void editButtonClicked(){
-//        finish();
-        startActivity(new Intent(this, AddPropertyActivity.class));
+        finish();
     }
 
     public void confirmButtonClicked(){
 
         try{
-            // persist in database
+            // update property in database
 
+            propertyRepository.update(property);
+            Toast.makeText(this, "Property updated.", Toast.LENGTH_LONG).show();
 
-            propertyRepository.insert(property);
             finish();
             startActivity(new Intent(this, MainActivity.class));
-            Toast.makeText(this, "Property saved.", Toast.LENGTH_LONG).show();
 
-
-//            DatabaseHelper databaseHelper = new DatabaseHelper(confirmAddPropertyDetailsPopUp.this);
-//
-//            databaseHelper.insertProperty(property);
         } catch(Exception e){
-            Toast.makeText(this, "Error saving property ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Error updating property ", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
         }
-
-
     }
 }

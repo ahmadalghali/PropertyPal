@@ -31,6 +31,7 @@ public class Property implements Parcelable, Serializable {
 
     private String description;
 
+
     public Property(String name, String number, String type, String leaseType, int size, String street, String postcode, String city, int bedroomCount, int bathroomCount, double askingPrice,  String description) {
         this.name = name;
         this.number = number;

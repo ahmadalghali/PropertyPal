@@ -1,6 +1,8 @@
 package com.greenwich.madpropertypal.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -20,8 +22,7 @@ public class MyPropertiesActivity extends AppCompatActivity {
 
     private PropertyViewModel propertyViewModel;
 
-
-
+    private static final String PROPERTY_EXTRA = "com.greenwich.madpropertypal.view.PROPERTY_EXTRA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +39,41 @@ public class MyPropertiesActivity extends AppCompatActivity {
 
 
             @Override
-            public void onChanged(List<Property> properties) {
+            public void onChanged(final List<Property> properties) {
                 //update recyclerview
 
                 myPropertiesAdapter.setProperties(properties);
 
+                myPropertiesAdapter.setOnPropertyClickedListener(new MyPropertiesAdapter.OnPropertyClickedListener() {
+                    @Override
+                    public void onPropertyClicked(int position) {
+                        Property property = properties.get(position);
+
+                        openPropertyDetailsActivity(property);
+                    }
+                });
+
             }
         });
 
+    }
+
+
+
+    public void openPropertyDetailsActivity(Property property){
+
+        try{
+
+            Intent intent = new Intent(this, PropertyDetails.class);
+
+            intent.putExtra(PROPERTY_EXTRA, (Parcelable) property);
+            startActivity(intent);
+        } catch(Exception e){
+
+            System.out.println("failed to start edit property activity");
+        }
 
     }
+
+
 }
