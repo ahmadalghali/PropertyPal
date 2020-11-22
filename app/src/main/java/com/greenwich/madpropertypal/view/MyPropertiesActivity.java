@@ -29,6 +29,10 @@ public class MyPropertiesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_properties);
 
+//        getSupportActionBar().setTitle(" ");
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         final MyPropertiesAdapter myPropertiesAdapter = new MyPropertiesAdapter();

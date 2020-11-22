@@ -11,29 +11,29 @@
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-        <activity android:name=".view.EditPropertyDetails" />
-        <activity android:name=".view.PropertyDetails"
-           />
-        <activity android:name=".view.MyPropertiesActivity">
+        <activity android:name=".AddReportActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.EditPropertyDetails" />
         <activity
-            android:name=".view.ConfirmAddPropertyDetailsPopUp"
+            android:name=".view.PropertyDetails"
+            android:parentActivityName=".view.MyPropertiesActivity" />
+        <activity
+            android:name=".view.MyPropertiesActivity"
+            android:parentActivityName=".view.MainActivity"></activity>
+        <activity
+            android:name=".view.popup.ConfirmAddPropertyDetailsPopUp"
             android:theme="@style/PopUpTheme" />
-        <activity android:name=".view.ConfirmEditPropertyDetailsPopUp"
-            android:theme="@style/PopUpTheme"
-            ></activity>
-
-
+        <activity
+            android:name=".view.popup.ConfirmEditPropertyDetailsPopUp"
+            android:theme="@style/PopUpTheme" />
         <activity
             android:name=".view.AddPropertyActivity"
-            android:parentActivityName=".view.MainActivity">
-
-        </activity>
+            android:parentActivityName=".view.MainActivity"></activity>
         <activity android:name=".view.MainActivity">
 
         </activity>

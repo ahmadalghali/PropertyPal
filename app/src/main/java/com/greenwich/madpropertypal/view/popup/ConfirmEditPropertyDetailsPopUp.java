@@ -1,4 +1,4 @@
-package com.greenwich.madpropertypal.view;
+package com.greenwich.madpropertypal.view.popup;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.greenwich.madpropertypal.R;
 import com.greenwich.madpropertypal.data.PropertyRepository;
 import com.greenwich.madpropertypal.model.Property;
+import com.greenwich.madpropertypal.view.MainActivity;
 
 public class ConfirmEditPropertyDetailsPopUp extends Activity {
 

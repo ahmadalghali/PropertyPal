@@ -24,6 +24,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.greenwich.madpropertypal.R;
 import com.greenwich.madpropertypal.data.PropertyRepository;
 import com.greenwich.madpropertypal.model.Property;
+import com.greenwich.madpropertypal.view.popup.ConfirmEditPropertyDetailsPopUp;
 
 import java.util.ArrayList;
 
@@ -82,6 +83,8 @@ public class EditPropertyDetails extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_edit_property_details);
+
+
 
 
         discardChangesButton = findViewById(R.id.discardChangesButton);

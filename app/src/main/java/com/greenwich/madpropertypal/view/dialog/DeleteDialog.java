@@ -1,4 +1,4 @@
-package com.greenwich.madpropertypal;
+package com.greenwich.madpropertypal.view.dialog;
 
 import android.app.Dialog;
 import android.content.Context;

@@ -21,6 +21,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.google.android.material.snackbar.Snackbar;
 import com.greenwich.madpropertypal.R;
 import com.greenwich.madpropertypal.model.Property;
+import com.greenwich.madpropertypal.view.popup.ConfirmAddPropertyDetailsPopUp;
 
 import java.util.ArrayList;
 
@@ -75,6 +76,10 @@ public class AddPropertyActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_add_property);
+
+
+//        getSupportActionBar().setTitle(" ");
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         propertyNameEditText = findViewById(R.id.etPropertyName);
         propertyNumberEditText = findViewById(R.id.etPropertyNumber);

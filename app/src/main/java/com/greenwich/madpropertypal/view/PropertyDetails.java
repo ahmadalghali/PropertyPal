@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.greenwich.madpropertypal.DeleteDialog;
+import com.greenwich.madpropertypal.view.dialog.DeleteDialog;
 import com.greenwich.madpropertypal.R;
 import com.greenwich.madpropertypal.data.PropertyRepository;
 import com.greenwich.madpropertypal.model.Property;
@@ -25,8 +25,8 @@ public class PropertyDetails extends AppCompatActivity implements DeleteDialog.D
     private PropertyRepository propertyRepository;
 
     private Button editButton;
-    private Button backButton;
     private Button deleteButton;
+    private Button addReportButton;
 
         private TextView propertyName;
         private TextView propertyNumber;
@@ -54,12 +54,15 @@ public class PropertyDetails extends AppCompatActivity implements DeleteDialog.D
             this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
             setContentView(R.layout.activity_property_details);
 
+//            getSupportActionBar().setTitle(" ");
+//            getSupportActionBar().setDisplayShowHomeEnabled(true);
+
 
             propertyRepository = new PropertyRepository(this.getApplication());
 
 
             editButton = findViewById(R.id.editButton);
-            backButton = findViewById(R.id.backButton);
+            addReportButton = findViewById(R.id.addReportButton);
             deleteButton = findViewById(R.id.deleteButton);
 
 
@@ -69,10 +72,10 @@ public class PropertyDetails extends AppCompatActivity implements DeleteDialog.D
                     editButtonClicked();
                 }
             });
-            backButton.setOnClickListener(new View.OnClickListener() {
+            addReportButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish();
+                    addReportButtonClicked();
                 }
             });
             deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -158,6 +161,10 @@ public class PropertyDetails extends AppCompatActivity implements DeleteDialog.D
         } catch(Exception e){
             Toast.makeText(this, "Error deleting property ", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void addReportButtonClicked(){
+
     }
 
     }
