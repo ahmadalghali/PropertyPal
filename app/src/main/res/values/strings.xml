@@ -26,6 +26,14 @@
         <item>Long let</item>
     </string-array>
 
+    <string-array name="interest">
+        <item>-- Interest --</item>
+        <item>Firm</item>
+        <item>Conditional</item>
+        <item>Considering</item>
+        <item>Not interested</item>
+    </string-array>
+
     <string-array name="properties">
         <item>Property 1</item>
         <item>Property 2</item>

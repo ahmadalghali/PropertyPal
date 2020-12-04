@@ -59,7 +59,6 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
     }
 
 
-
     public class MyPropertiesViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvPropertyName;

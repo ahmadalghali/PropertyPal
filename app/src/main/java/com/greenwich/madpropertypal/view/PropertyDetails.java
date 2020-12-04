@@ -26,7 +26,7 @@ public class PropertyDetails extends AppCompatActivity implements DeleteDialog.D
 
     private Button editButton;
     private Button deleteButton;
-    private Button addReportButton;
+    private Button reportsButton;
 
         private TextView propertyName;
         private TextView propertyNumber;
@@ -62,7 +62,7 @@ public class PropertyDetails extends AppCompatActivity implements DeleteDialog.D
 
 
             editButton = findViewById(R.id.editButton);
-            addReportButton = findViewById(R.id.addReportButton);
+            reportsButton = findViewById(R.id.reportsButton);
             deleteButton = findViewById(R.id.deleteButton);
 
 
@@ -72,10 +72,10 @@ public class PropertyDetails extends AppCompatActivity implements DeleteDialog.D
                     editButtonClicked();
                 }
             });
-            addReportButton.setOnClickListener(new View.OnClickListener() {
+            reportsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    addReportButtonClicked();
+                    reportsButtonClicked();
                 }
             });
             deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +163,11 @@ public class PropertyDetails extends AppCompatActivity implements DeleteDialog.D
         }
     }
 
-    public void addReportButtonClicked(){
+    public void reportsButtonClicked(){
+
+        Intent intent = new Intent(this, PropertyReports.class);
+        intent.putExtra(PROPERTY_EXTRA, (Parcelable) property);
+        startActivity(intent);
 
     }
 

@@ -15,21 +15,25 @@ public class Report implements Parcelable, Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    private Date date;
+
+    private Date viewingDate;
     private String interest;
     private Double offerPrice;
     private Date offerExpiryDate;
     private String conditionsOfOffer;
     private String viewingComments;
+    private int propertyId;
 
 
-    public Report(Date date, String interest, Double offerPrice, Date offerExpiryDate, String conditionsOfOffer, String viewingComments) {
-        this.date = date;
+    public Report(Date viewingDate, String interest, Double offerPrice, Date offerExpiryDate, String conditionsOfOffer, String viewingComments, int propertyId) {
+        this.viewingDate = viewingDate;
         this.interest = interest;
         this.offerPrice = offerPrice;
         this.offerExpiryDate = offerExpiryDate;
         this.conditionsOfOffer = conditionsOfOffer;
         this.viewingComments = viewingComments;
+        this.propertyId = propertyId;
+
     }
 
 
@@ -41,12 +45,21 @@ public class Report implements Parcelable, Serializable {
         this.id = id;
     }
 
-    public Date getDate() {
-        return date;
+
+    public void setViewingDate(Date viewingDate) {
+        this.viewingDate = viewingDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setPropertyId(int propertyId) {
+        this.propertyId = propertyId;
+    }
+
+    public Date getViewingDate() {
+        return viewingDate;
+    }
+
+    public int getPropertyId() {
+        return propertyId;
     }
 
     public String getInterest() {
@@ -93,7 +106,7 @@ public class Report implements Parcelable, Serializable {
     public String toString() {
         return "Report{" +
                 "id=" + id +
-                ", date=" + date +
+                ", date=" + viewingDate +
                 ", interest='" + interest + '\'' +
                 ", offerPrice=" + offerPrice +
                 ", offerExpiryDate=" + offerExpiryDate +

@@ -150,9 +150,6 @@ public class ConfirmAddPropertyDetailsPopUp extends Activity {
             Toast.makeText(this, "Property saved.", Toast.LENGTH_LONG).show();
 
 
-//            DatabaseHelper databaseHelper = new DatabaseHelper(confirmAddPropertyDetailsPopUp.this);
-//
-//            databaseHelper.insertProperty(property);
         } catch(Exception e){
             Toast.makeText(this, "Error saving property ", Toast.LENGTH_LONG).show();
         }
