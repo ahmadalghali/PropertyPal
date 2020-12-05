@@ -45,4 +45,9 @@ public class ReportViewModel extends AndroidViewModel {
     public LiveData<List<Report>> getAllReports(){
         return  allReports;
     }
+
+    public LiveData<List<Report>> getPropertyReportsById(int propertyId){
+        return  reportRepository.getPropertyReportsById(propertyId);
+    }
+
 }

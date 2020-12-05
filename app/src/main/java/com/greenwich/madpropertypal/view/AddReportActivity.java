@@ -228,18 +228,18 @@ public class AddReportActivity extends AppCompatActivity{
 
 
         String interest = interestSpinner.getSelectedItem().toString();
-        String conditionsOfOffer = "";
-        String viewingcomments = "";
-
-
+//        String conditionsOfOffer = "";
+//        String viewingcomments = "";
+//
+//
         try {
-
-            if(etConditionsOfOffer.getText().toString().isEmpty()){
-                conditionsOfOffer = null;
-            }
-            if(etViewingComments.getText().toString().isEmpty()){
-                viewingcomments = null;
-            }
+//
+//            if(etConditionsOfOffer.getText().toString().isEmpty()){
+//                conditionsOfOffer = null;
+//            }
+//            if(etViewingComments.getText().toString().isEmpty()){
+//                viewingcomments = null;
+//            }
 
 
             if(getIntent().hasExtra(PROPERTY_EXTRA)){
@@ -248,7 +248,7 @@ public class AddReportActivity extends AppCompatActivity{
 
             }
 
-            Report report = new Report(new java.sql.Date(viewingDate.getTimeInMillis()),interest, Double.parseDouble(etOfferPrice.getText().toString()), new java.sql.Date(offerExpiryDate.getTimeInMillis()), conditionsOfOffer,viewingcomments, property.getId());
+            Report report = new Report(new java.sql.Date(viewingDate.getTimeInMillis()),interest, Double.parseDouble(etOfferPrice.getText().toString()), new java.sql.Date(offerExpiryDate.getTimeInMillis()), etConditionsOfOffer.getText().toString(),etViewingComments.getText().toString(), property.getId());
 
             reportRepository.insert(report);
 

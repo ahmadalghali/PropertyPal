@@ -3,6 +3,8 @@ package com.greenwich.madpropertypal.view.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,10 +16,12 @@ import com.greenwich.madpropertypal.model.Property;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapter.MyPropertiesViewHolder>  {
+public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapter.MyPropertiesViewHolder> implements Filterable {
 
 
     private List<Property> properties = new ArrayList<>();
+    private List<Property> propertiesFullList;
+
 
     private OnPropertyClickedListener onPropertyClickedListener;
 
@@ -45,7 +49,7 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
 
         Property currentProperty = properties.get(position);
 
-        holder.tvPropertyName.setText(currentProperty.getName());
+        holder.tvPropertyName.setText(currentProperty.getNumber() + " " + currentProperty.getName());
     }
 
     @Override
@@ -55,6 +59,7 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
 
     public void setProperties(List<Property> properties){
         this.properties = properties;
+        propertiesFullList = new ArrayList<>(properties);
         notifyDataSetChanged();
     }
 
@@ -87,4 +92,42 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
 
         void onPropertyClicked(int position);
     }
+
+    @Override
+    public Filter getFilter() {
+        return propertyFilter;
+    }
+
+    private Filter propertyFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Property> filteredPropertiesList = new ArrayList<>();
+
+            if(constraint == null || constraint.length() == 0){
+                filteredPropertiesList.addAll(propertiesFullList);
+
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for(Property property : propertiesFullList){
+                    if(property.getName().toLowerCase().contains(filterPattern) || property.getNumber().toLowerCase().contains(filterPattern)){
+                        filteredPropertiesList.add(property);
+                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+
+            filterResults.values = filteredPropertiesList;
+
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            properties.clear();
+            properties.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }

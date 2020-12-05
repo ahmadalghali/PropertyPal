@@ -3,6 +3,8 @@ package com.greenwich.madpropertypal.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.view.inputmethod.EditorInfo;
+import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -22,6 +24,8 @@ public class MyPropertiesActivity extends AppCompatActivity {
 
     private PropertyViewModel propertyViewModel;
 
+    private SearchView searchView;
+
     private static final String PROPERTY_EXTRA = "com.greenwich.madpropertypal.view.PROPERTY_EXTRA";
 
     @Override
@@ -30,6 +34,10 @@ public class MyPropertiesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_properties);
 
 
+        searchView = findViewById(R.id.searchViewProperties);
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setIconified(false);
+        searchView.requestFocusFromTouch();
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -57,6 +65,28 @@ public class MyPropertiesActivity extends AppCompatActivity {
 
             }
         });
+
+//        searchView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                searchView.setIconified(false);
+////                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+//            }
+//        });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                myPropertiesAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
 
     }
 

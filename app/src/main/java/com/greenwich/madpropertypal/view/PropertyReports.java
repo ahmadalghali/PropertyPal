@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -29,14 +30,14 @@ public class PropertyReports extends AppCompatActivity {
     private FloatingActionButton addReportButton;
     private ReportViewModel reportViewModel;
 
-
-
-
+    private TextView tvPropertyName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_property_reports);
+
+        tvPropertyName = findViewById(R.id.etPropertyName);
 
         RecyclerView recyclerView = findViewById(R.id.propertyReportsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -44,17 +45,23 @@ public class PropertyReports extends AppCompatActivity {
         recyclerView.setAdapter(propertyReportsAdapter);
 
         reportViewModel = new ViewModelProvider(this).get(ReportViewModel.class);
-        reportViewModel.getAllReports().observe(this, new Observer<List<Report>>() {
+
+        if(getIntent().hasExtra(PROPERTY_EXTRA)){
+            property = getIntent().getParcelableExtra(PROPERTY_EXTRA);
+
+            tvPropertyName.setText(property.getName());
+            reportViewModel.getPropertyReportsById(property.getId()).observe(this, new Observer<List<Report>>() {
 
 
-            @Override
-            public void onChanged(final List<Report> reports) {
-                //update recyclerview
+                @Override
+                public void onChanged(final List<Report> reports) {
+                    //update recyclerview
 
-                propertyReportsAdapter.setReports(reports);
+                    propertyReportsAdapter.setReports(reports);
 
-            }
-        });
+                }
+            });
+        }
 
 
 

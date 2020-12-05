@@ -32,4 +32,8 @@ public interface ReportDao {
 
     @Query("DELETE FROM " + REPORT_TABLE)
     void deleteAllReports();
+
+    @Query("SELECT * FROM " + REPORT_TABLE+ " WHERE propertyId = :propertyId")
+    LiveData<List<Report>> getPropertyReportsById(int propertyId);
+
 }

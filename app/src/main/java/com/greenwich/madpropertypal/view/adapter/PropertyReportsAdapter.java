@@ -36,7 +36,7 @@ public class PropertyReportsAdapter extends RecyclerView.Adapter<PropertyReports
     public void onBindViewHolder(@NonNull PropertyReportsAdapter.PropertyReportsViewHolder holder, int position) {
         Report currentReport = reports.get(position);
 
-        holder.tvInterest.setText(currentReport.getInterest() + " - ");
+        holder.tvInterest.setText(currentReport.getInterest() + " -");
 
         NumberFormat numberFormat = NumberFormat.getInstance();
         numberFormat.setGroupingUsed(true);
@@ -52,6 +52,7 @@ public class PropertyReportsAdapter extends RecyclerView.Adapter<PropertyReports
         holder.tvConditions.setText(currentReport.getConditionsOfOffer());
         holder.tvComments.setText(currentReport.getViewingComments());
         holder.tvOfferExpiryDate.setText("Expires: " + formattedExpiryDate);
+
     }
 
     @Override
