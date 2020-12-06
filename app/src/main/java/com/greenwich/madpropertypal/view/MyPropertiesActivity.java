@@ -28,6 +28,8 @@ public class MyPropertiesActivity extends AppCompatActivity {
     private ImageView advancedSearchImageViewButton;
     private SearchView searchView;
 
+    private  MyPropertiesAdapter myPropertiesAdapter;
+
     private static final String PROPERTY_EXTRA = "com.greenwich.madpropertypal.view.PROPERTY_EXTRA";
 
     @Override
@@ -52,7 +54,7 @@ public class MyPropertiesActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        final MyPropertiesAdapter myPropertiesAdapter = new MyPropertiesAdapter();
+        myPropertiesAdapter = new MyPropertiesAdapter();
         recyclerView.setAdapter(myPropertiesAdapter);
 
         propertyViewModel = new ViewModelProvider(this).get(PropertyViewModel.class);
@@ -77,14 +79,6 @@ public class MyPropertiesActivity extends AppCompatActivity {
             }
         });
 
-//        searchView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                searchView.setIconified(false);
-////                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-//            }
-//        });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -99,6 +93,44 @@ public class MyPropertiesActivity extends AppCompatActivity {
         });
 
 
+        showMatchingProperties();
+
+    }
+
+    public void showMatchingProperties(){
+
+        if(getIntent().hasExtra("city") || getIntent().hasExtra("propertyType") || getIntent().hasExtra("bedroomCount")  ){
+
+            String city = getIntent().getStringExtra("city");
+            String propertyType = getIntent().getStringExtra("propertyType");
+            int bedroomCount = getIntent().getIntExtra("bedroomCount", 1);
+
+//            LiveData<List<Property>> matchingProperties = propertyViewModel.getMatchingProperties(city, propertyType, bedroomCount);
+
+            propertyViewModel.getMatchingProperties(city, propertyType, bedroomCount).observe(this, new Observer<List<Property>>() {
+
+
+                @Override
+                public void onChanged(final List<Property> properties) {
+                    //update recyclerview
+
+                    myPropertiesAdapter.setProperties(properties);
+
+                    myPropertiesAdapter.setOnPropertyClickedListener(new MyPropertiesAdapter.OnPropertyClickedListener() {
+                        @Override
+                        public void onPropertyClicked(int position) {
+                            Property property = properties.get(position);
+
+                            openPropertyDetailsActivity(property);
+                        }
+                    });
+
+                }
+            });
+
+        }
+
+        return;
     }
 
 

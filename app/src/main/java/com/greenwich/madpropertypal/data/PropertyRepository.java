@@ -36,12 +36,18 @@ public class PropertyRepository {
         new DeletePropertyAsyncTask(propertyDao).execute(property);
     }
 
+
+
     public void deleteAll(){
         new DeleteAllPropertiesAsyncTask(propertyDao).execute();
     }
 
     public LiveData<List<Property>> getAllProperties(){
         return allProperties;
+    }
+
+    public LiveData<List<Property>> getMatchingProperties(String city, String propertyType, int bedroomCount){
+        return propertyDao.getMatchingProperties( city,  propertyType,  bedroomCount);
     }
 
     public static class InsertPropertyAsyncTask extends AsyncTask<Property, Void, Void>{
