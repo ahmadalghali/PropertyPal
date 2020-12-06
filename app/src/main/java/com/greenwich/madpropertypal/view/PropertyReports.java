@@ -17,7 +17,6 @@ import com.greenwich.madpropertypal.R;
 import com.greenwich.madpropertypal.model.Property;
 import com.greenwich.madpropertypal.model.Report;
 import com.greenwich.madpropertypal.view.adapter.PropertyReportsAdapter;
-import com.greenwich.madpropertypal.viewmodel.ReportViewModel;
 
 import java.util.List;
 

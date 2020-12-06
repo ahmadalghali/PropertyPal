@@ -11,8 +11,9 @@
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-        <activity android:name=".view.PropertyReports"></activity>
-        <activity android:name=".view.AddReportActivity"></activity>
+        <activity android:name=".view.AdvancedSearchActivity"></activity>
+        <activity android:name=".view.PropertyReports" />
+        <activity android:name=".view.AddReportActivity" />
         <activity android:name=".view.EditPropertyDetails" />
         <activity
             android:name=".view.PropertyDetails"

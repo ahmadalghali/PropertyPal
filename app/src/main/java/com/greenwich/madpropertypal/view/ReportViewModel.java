@@ -1,4 +1,4 @@
-package com.greenwich.madpropertypal.viewmodel;
+package com.greenwich.madpropertypal.view;
 
 import android.app.Application;
 

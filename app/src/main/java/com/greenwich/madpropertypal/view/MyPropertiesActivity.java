@@ -3,7 +3,9 @@ package com.greenwich.madpropertypal.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ImageView;
 import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +25,7 @@ public class MyPropertiesActivity extends AppCompatActivity {
 
 
     private PropertyViewModel propertyViewModel;
-
+    private ImageView advancedSearchImageViewButton;
     private SearchView searchView;
 
     private static final String PROPERTY_EXTRA = "com.greenwich.madpropertypal.view.PROPERTY_EXTRA";
@@ -36,8 +38,17 @@ public class MyPropertiesActivity extends AppCompatActivity {
 
         searchView = findViewById(R.id.searchViewProperties);
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setFocusable(false);
         searchView.setIconified(false);
-        searchView.requestFocusFromTouch();
+        searchView.clearFocus();
+
+        advancedSearchImageViewButton = findViewById(R.id.advancedSettingsImageViewButton);
+        advancedSearchImageViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               openAdvancedSearchActivity();
+            }
+        });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -91,6 +102,10 @@ public class MyPropertiesActivity extends AppCompatActivity {
     }
 
 
+    public void openAdvancedSearchActivity(){
+
+        startActivity(new Intent(this, AdvancedSearchActivity.class));
+    }
 
     public void openPropertyDetailsActivity(Property property){
 
