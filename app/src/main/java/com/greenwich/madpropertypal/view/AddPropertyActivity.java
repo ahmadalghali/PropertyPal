@@ -29,8 +29,6 @@ public class AddPropertyActivity extends AppCompatActivity {
 
 
 
-
-
     private EditText propertyNameEditText;
     private EditText propertyNumberEditText;
     private Spinner propertyTypeSpinner;
@@ -74,13 +72,14 @@ public class AddPropertyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         setContentView(R.layout.activity_add_property);
 
+        assignGlobalVariables();
+        createOnClickListeners();
+    }
 
-//        getSupportActionBar().setTitle(" ");
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+    private void assignGlobalVariables(){
         propertyNameEditText = findViewById(R.id.etPropertyName);
         propertyNumberEditText = findViewById(R.id.etPropertyNumber);
         propertyTypeSpinner = findViewById(R.id.propertyTypeSpinner);
@@ -99,10 +98,26 @@ public class AddPropertyActivity extends AppCompatActivity {
         localAmenitiesListView = findViewById(R.id.localAmenitiesListView);
 
 
+        propertyTypeSpinner.setSelection(1);
+        leaseTypeSpinner.setSelection(1);
+
+
         amenitiesList = new ArrayList<>();
         arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,amenitiesList);
 
+        cancelButton = findViewById(R.id.cancelButton);
+        addPropertyButton = findViewById(R.id.addPropertyButton);
+
+        addAmenityButton = findViewById(R.id.addAmenityButton);
+
+
         localAmenitiesListView.setAdapter(arrayAdapter);
+
+    }
+
+    private void createOnClickListeners(){
+
+
 
         localAmenitiesListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -125,10 +140,7 @@ public class AddPropertyActivity extends AppCompatActivity {
             }
         });
 
-        cancelButton = findViewById(R.id.cancelButton);
-        addPropertyButton = findViewById(R.id.addPropertyButton);
 
-        addAmenityButton = findViewById(R.id.addAmenityButton);
 
         addAmenityButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,16 +164,15 @@ public class AddPropertyActivity extends AppCompatActivity {
                 addPropertyButtonClicked();
             }
         });
-
-
     }
 
-    public void backToHomeActivity(){
+
+    private void backToHomeActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
-    public void addPropertyButtonClicked(){
+    private void getUserInput(){
         propertyName = propertyNameEditText.getText().toString();
         propertyNumber = propertyNumberEditText.getText().toString();
         propertyType = propertyTypeSpinner.getSelectedItem().toString();
@@ -175,36 +186,53 @@ public class AddPropertyActivity extends AppCompatActivity {
         askingPrice = askingPriceEditText.getText().toString();
         description = descriptionTextView.getText().toString();
 
-
-
-        String[] requiredFieldsInput = {propertyName, propertyNumber, propertyType, leaseType, size, street, postcode,city, bedroomCount, bathroomCount, askingPrice};
-        EditText[] requiredETFields = {propertyNameEditText, propertyNumberEditText,  sizeEditText, streetEditText, postcodeEditText,cityEditText, bedroomCountEditText, bathroomCountEditText, askingPriceEditText}; //,
-
-        if(areFieldsEmpty(requiredETFields)){ //
-//            Toast.makeText(this, "Please fill in required fields.", Toast.LENGTH_LONG).show();
-
-            ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
-
-            Snackbar.make(constraintLayout,"Please fill in required fields.", Snackbar.LENGTH_LONG).show();
-
-        } else{
-
-            // get input and display in popup
-            Intent intent = new Intent(AddPropertyActivity.this, ConfirmAddPropertyDetailsPopUp.class);
-
-            Property property = new Property(propertyName,propertyNumber,propertyType,leaseType,Integer.parseInt(size),street,postcode,city,Integer.parseInt(bedroomCount),Integer.parseInt(bathroomCount),Double.parseDouble(askingPrice), description);
-            intent.putExtra("property", (Parcelable) property);
-
-
-            startActivity(intent);
-        }
-
     }
 
-    public Boolean areFieldsEmpty(EditText[] requiredETFields){
-         boolean empty = false;
+    private Boolean inputIsValid(){
+
+        if(areFieldsEmpty()){
+            return false;
+        }
+        return true;
+    }
+
+    private void showRequiredFieldsAlert(){
+        ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
+
+        Snackbar.make(constraintLayout,"Please fill in required fields.", Snackbar.LENGTH_LONG).show();
+    }
+
+    public void addPropertyButtonClicked(){
+
+        getUserInput();
+
+        if(!inputIsValid()){
+            showRequiredFieldsAlert();
+        } else{
+            showConfirmationPopup();
+        }
+    }
+
+    private void showConfirmationPopup(){
+        Intent intent = new Intent(AddPropertyActivity.this, ConfirmAddPropertyDetailsPopUp.class);
+
+        Property property = new Property(propertyName,propertyNumber,propertyType,leaseType,Integer.parseInt(size),street,postcode,city,Integer.parseInt(bedroomCount),Integer.parseInt(bathroomCount),Double.parseDouble(askingPrice), description);
+        intent.putExtra("property", (Parcelable) property);
+
+        startActivity(intent);
+    }
+
+
+    private Boolean areFieldsEmpty(){
+
+        EditText[] requiredETFields = {propertyNameEditText, propertyNumberEditText,  sizeEditText, streetEditText, postcodeEditText,cityEditText, bedroomCountEditText, bathroomCountEditText, askingPriceEditText}; //,
+
+
+        boolean empty = false;
+
 
         for (EditText field : requiredETFields) {
+            //Checking if each required field is empty
             if(field.getText().toString().isEmpty()){
                 field.setHintTextColor(Color.RED);
                 empty = true;
@@ -214,6 +242,8 @@ public class AddPropertyActivity extends AppCompatActivity {
             propertyTypeSpinner.setBackgroundColor(Color.RED);
             empty = true;
         }
+
+
         if(leaseTypeSpinner.getSelectedItemPosition() == 0 ){
             leaseTypeSpinner.setBackgroundColor(Color.RED);
             empty = true;

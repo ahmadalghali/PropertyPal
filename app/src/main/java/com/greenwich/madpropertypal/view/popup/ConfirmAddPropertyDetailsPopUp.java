@@ -14,8 +14,9 @@ import android.widget.Toast;
 import com.greenwich.madpropertypal.R;
 import com.greenwich.madpropertypal.data.PropertyRepository;
 import com.greenwich.madpropertypal.model.Property;
-import com.greenwich.madpropertypal.view.AddPropertyActivity;
 import com.greenwich.madpropertypal.view.MainActivity;
+
+import java.text.NumberFormat;
 
 public class ConfirmAddPropertyDetailsPopUp extends Activity {
 
@@ -113,7 +114,7 @@ public class ConfirmAddPropertyDetailsPopUp extends Activity {
             city.setText(property.getCity());
             bedroomCount.setText("" + property.getBedroomCount());
             bathroomCount.setText("" + property.getBathroomCount());
-            askingPrice.setText("£" + property.getAskingPrice());
+            askingPrice.setText("£" + NumberFormat.getInstance().format(property.getAskingPrice()));
             description.setText(property.getDescription());
 
 
@@ -134,8 +135,8 @@ public class ConfirmAddPropertyDetailsPopUp extends Activity {
     }
 
     public void editButtonClicked(){
-//        finish();
-        startActivity(new Intent(this, AddPropertyActivity.class));
+        finish();
+//        startActivity(new Intent(this, AddPropertyActivity.class));
     }
 
     public void confirmButtonClicked(){

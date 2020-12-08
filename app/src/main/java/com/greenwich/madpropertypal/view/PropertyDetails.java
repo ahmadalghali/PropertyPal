@@ -17,6 +17,8 @@ import com.greenwich.madpropertypal.R;
 import com.greenwich.madpropertypal.data.PropertyRepository;
 import com.greenwich.madpropertypal.model.Property;
 
+import java.text.NumberFormat;
+
 public class PropertyDetails extends AppCompatActivity implements DeleteDialog.DeleteDialogListener {
 
 
@@ -118,7 +120,7 @@ public class PropertyDetails extends AppCompatActivity implements DeleteDialog.D
                 city.setText(property.getCity());
                 bedroomCount.setText("" + property.getBedroomCount());
                 bathroomCount.setText("" + property.getBathroomCount());
-                askingPrice.setText("£" + property.getAskingPrice());
+                askingPrice.setText("£" + NumberFormat.getInstance().format(property.getAskingPrice()));
                 description.setText(property.getDescription());
 
 

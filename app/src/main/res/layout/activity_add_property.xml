@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/app_background"
-        android:paddingBottom="200dp">
+        android:paddingBottom="50dp">
 
 
         <Button
@@ -336,6 +336,7 @@
             android:lines="8"
             android:maxLines="10"
             android:scrollbars="vertical"
+            android:text="Suspendisse potenti. Pellentesque facilisis, augue eu malesuada venenatis, tortor risus sollicitudin enim, rutrum fringilla nulla nibh convallis leo. Donec ligula arcu, dignissim non purus convallis, facilisis condimentum diam. Sed vitae metus quis massa fermentum laoreet. "
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView14" />
         <Button

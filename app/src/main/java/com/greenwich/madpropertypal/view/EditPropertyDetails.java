@@ -15,14 +15,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.greenwich.madpropertypal.R;
-import com.greenwich.madpropertypal.data.PropertyRepository;
 import com.greenwich.madpropertypal.model.Property;
 import com.greenwich.madpropertypal.view.popup.ConfirmEditPropertyDetailsPopUp;
 
@@ -33,11 +31,7 @@ public class EditPropertyDetails extends AppCompatActivity {
     private static final String PROPERTY_EXTRA = "com.greenwich.madpropertypal.view.PROPERTY_EXTRA";
 
 
-    private PropertyRepository propertyRepository;
-
-
     private Property property;
-
     private EditText propertyNameEditText;
     private EditText propertyNumberEditText;
     private Spinner propertyTypeSpinner;
@@ -74,44 +68,18 @@ public class EditPropertyDetails extends AppCompatActivity {
     private ArrayAdapter<String> arrayAdapter;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         setContentView(R.layout.activity_edit_property_details);
 
+        assignGlobalVariables();
+        setPropertyDetailsInDisplay();
+        createOnClickListeners();
+    }
 
-
-
-        discardChangesButton = findViewById(R.id.discardChangesButton);
-        saveButton = findViewById(R.id.saveButton);
-        propertyNameEditText   = findViewById(R.id.etPropertyName);
-        propertyNumberEditText  = findViewById(R.id.etPropertyNumber);
-        propertyTypeSpinner    = findViewById(R.id.propertyTypeSpinner);
-        leaseTypeSpinner        = findViewById(R.id.leaseTypeSpinner);
-        sizeEditText           = findViewById(R.id.etPropertySizeMetersSquared);
-        streetEditText         = findViewById(R.id.etStreet);
-        postcodeEditText         = findViewById(R.id.etPostcode);
-        cityEditText            = findViewById(R.id.etCity);
-        bedroomCountEditText     = findViewById(R.id.etBedroomCount);
-        bathroomCountEditText   = findViewById(R.id.etBathroomCount);
-        askingPriceEditText      = findViewById(R.id.etAskingPrice);
-        localAmenitiesListView    = findViewById(R.id.localAmenitiesListView);
-        descriptionTextView     = findViewById(R.id.etDescription);
-
-        amenityEditText = findViewById(R.id.etAmenity);
-        localAmenitiesListView = findViewById(R.id.localAmenitiesListView);
-
-        setPropertyDetails();
-
-        amenitiesList = new ArrayList<>();
-        arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,amenitiesList);
-
-        localAmenitiesListView.setAdapter(arrayAdapter);
+    private void createOnClickListeners(){
 
         localAmenitiesListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -133,18 +101,12 @@ public class EditPropertyDetails extends AppCompatActivity {
             }
         });
 
-
-        addAmenityButton = findViewById(R.id.addAmenityButton);
-
         addAmenityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addAmenityButtonClicked();
             }
         });
-
-
-
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,12 +121,37 @@ public class EditPropertyDetails extends AppCompatActivity {
                 finish();
             }
         });
+    }
 
+    private void assignGlobalVariables(){
+        discardChangesButton = findViewById(R.id.discardChangesButton);
+        saveButton = findViewById(R.id.saveButton);
+        propertyNameEditText   = findViewById(R.id.etPropertyName);
+        propertyNumberEditText  = findViewById(R.id.etPropertyNumber);
+        propertyTypeSpinner    = findViewById(R.id.propertyTypeSpinner);
+        leaseTypeSpinner        = findViewById(R.id.leaseTypeSpinner);
+        sizeEditText           = findViewById(R.id.etPropertySizeMetersSquared);
+        streetEditText         = findViewById(R.id.etStreet);
+        postcodeEditText         = findViewById(R.id.etPostcode);
+        cityEditText            = findViewById(R.id.etCity);
+        bedroomCountEditText     = findViewById(R.id.etBedroomCount);
+        bathroomCountEditText   = findViewById(R.id.etBathroomCount);
+        askingPriceEditText      = findViewById(R.id.etAskingPrice);
+        localAmenitiesListView    = findViewById(R.id.localAmenitiesListView);
+        descriptionTextView     = findViewById(R.id.etDescription);
+        addAmenityButton = findViewById(R.id.addAmenityButton);
 
+        amenityEditText = findViewById(R.id.etAmenity);
+        localAmenitiesListView = findViewById(R.id.localAmenitiesListView);
+
+        amenitiesList = new ArrayList<>();
+        arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,amenitiesList);
+
+        localAmenitiesListView.setAdapter(arrayAdapter);
 
     }
 
-    public void setPropertyDetails(){
+    private void setPropertyDetailsInDisplay(){
             if(getIntent().hasExtra(PROPERTY_EXTRA)){
 
                 property = getIntent().getParcelableExtra(PROPERTY_EXTRA);
@@ -179,16 +166,15 @@ public class EditPropertyDetails extends AppCompatActivity {
                 cityEditText.setText(property.getCity());
                 bedroomCountEditText.setText(String.valueOf(property.getBedroomCount()));
                 bathroomCountEditText.setText(String.valueOf(property.getBathroomCount()));
-                askingPriceEditText.setText(String.valueOf((int) property.getAskingPrice() + "0"));
+                askingPriceEditText.setText(String.valueOf((int) property.getAskingPrice()));
 //            localAmenitiesListView
                 descriptionTextView.setText(property.getDescription());
             } else{
-                System.out.println("property doesnt exist in intent, its not being passed");
+                System.out.println("property doesn't exist in intent, its not being passed");
             }
     }
 
-
-    public void saveButtonClicked(){
+    private void getUserInput(){
         propertyName = propertyNameEditText.getText().toString();
         propertyNumber = propertyNumberEditText.getText().toString();
         propertyType = propertyTypeSpinner.getSelectedItem().toString();
@@ -201,49 +187,50 @@ public class EditPropertyDetails extends AppCompatActivity {
         bathroomCount = bathroomCountEditText.getText().toString();
         askingPrice = askingPriceEditText.getText().toString();
         description = descriptionTextView.getText().toString();
+    }
+
+    private void displayAlertMessage(){
+        ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
+        Snackbar.make(constraintLayout,"Please fill in required fields.", Snackbar.LENGTH_LONG).show();
+    }
+
+    private void updatePropertyDetails(){
+        property.setName(propertyName);
+        property.setNumber(propertyNumber);
+        property.setType(propertyType);
+        property.setLeaseType(leaseType);
+        property.setSize(Integer.parseInt(size));
+        property.setStreet(street);
+        property.setPostcode(postcode);
+        property.setCity(city);
+        property.setBedroomCount(Integer.parseInt(bedroomCount));
+        property.setBathroomCount(Integer.parseInt(bathroomCount));
+        property.setAskingPrice(Double.parseDouble(askingPrice));
+        property.setDescription(description);
+
+    }
+
+    private void saveButtonClicked(){
+
+        getUserInput();
 
 
-
-//        String[] requiredFieldsInput = {propertyName, propertyNumber, propertyType, leaseType, size, street, postcode,city, bedroomCount, bathroomCount, askingPrice};
-        EditText[] requiredETFields = {propertyNameEditText, propertyNumberEditText,  sizeEditText, streetEditText, postcodeEditText,cityEditText, bedroomCountEditText, bathroomCountEditText, askingPriceEditText}; //,
-
-        if(areFieldsEmpty(requiredETFields)){
-
-            ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
-
-            Snackbar.make(constraintLayout,"Please fill in required fields.", Snackbar.LENGTH_LONG).show();
-
+        if(areFieldsEmpty()){
+            displayAlertMessage();
         } else{
-
-            // get input and display in popup
+            updatePropertyDetails();
 
             Intent intent = new Intent(EditPropertyDetails.this, ConfirmEditPropertyDetailsPopUp.class);
-
-//
-//            Property property = new Property(propertyName,propertyNumber,propertyType,leaseType,Integer.parseInt(size),street,postcode,city,Integer.parseInt(bedroomCount),Integer.parseInt(bathroomCount),Double.parseDouble(askingPrice), description);
-
-            property.setName(propertyName);
-            property.setNumber(propertyNumber);
-            property.setType(propertyType);
-            property.setLeaseType(leaseType);
-            property.setSize(Integer.parseInt(size));
-            property.setStreet(street);
-            property.setPostcode(postcode);
-            property.setCity(city);
-            property.setBedroomCount(Integer.parseInt(bedroomCount));
-            property.setBathroomCount(Integer.parseInt(bathroomCount));
-            property.setAskingPrice(Double.parseDouble(askingPrice));
-            property.setDescription(description);
-
-
             intent.putExtra(PROPERTY_EXTRA, (Parcelable) property);
-
             startActivity(intent);
         }
 
     }
 
-    public Boolean areFieldsEmpty(EditText[] requiredETFields){
+    private Boolean areFieldsEmpty(){
+        EditText[] requiredETFields = {propertyNameEditText, propertyNumberEditText,  sizeEditText, streetEditText, postcodeEditText,cityEditText, bedroomCountEditText, bathroomCountEditText, askingPriceEditText}; //,
+
+
         boolean empty = false;
 
         for (EditText field : requiredETFields) {
@@ -303,8 +290,7 @@ public class EditPropertyDetails extends AppCompatActivity {
         return empty;
     }
 
-
-    public void addAmenityButtonClicked(){
+    private void addAmenityButtonClicked(){
 
         String amenity = amenityEditText.getText().toString();
 
@@ -317,26 +303,4 @@ public class EditPropertyDetails extends AppCompatActivity {
         }
     }
 
-
-    public void confirmButtonClicked(){
-
-        try{
-            // persist in database
-
-
-            propertyRepository.update(property);
-            finish();
-            startActivity(new Intent(this, MainActivity.class));
-            Toast.makeText(this, "Property saved.", Toast.LENGTH_LONG).show();
-
-
-//            DatabaseHelper databaseHelper = new DatabaseHelper(confirmAddPropertyDetailsPopUp.this);
-//
-//            databaseHelper.insertProperty(property);
-        } catch(Exception e){
-            Toast.makeText(this, "Error saving property ", Toast.LENGTH_LONG).show();
-        }
-
-
-    }
 }

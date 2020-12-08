@@ -16,6 +16,8 @@ import com.greenwich.madpropertypal.data.PropertyRepository;
 import com.greenwich.madpropertypal.model.Property;
 import com.greenwich.madpropertypal.view.MainActivity;
 
+import java.text.NumberFormat;
+
 public class ConfirmEditPropertyDetailsPopUp extends Activity {
 
 
@@ -115,7 +117,7 @@ public class ConfirmEditPropertyDetailsPopUp extends Activity {
             city.setText(property.getCity());
             bedroomCount.setText("" + property.getBedroomCount());
             bathroomCount.setText("" + property.getBathroomCount());
-            askingPrice.setText("£" + property.getAskingPrice());
+            askingPrice.setText("£" + NumberFormat.getInstance().format(property.getAskingPrice()));
             description.setText(property.getDescription());
 
 

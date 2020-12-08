@@ -28,17 +28,12 @@ public class AddReportActivity extends AppCompatActivity{
     private static final String PROPERTY_EXTRA = "com.greenwich.madpropertypal.view.PROPERTY_EXTRA";
 
     private ReportRepository reportRepository;
-
     private Property property;
-
     private Calendar viewingDate;
     private Calendar offerExpiryDate;
-
     private TextView activeDateDisplay;
     private Calendar activeDate;
-
     static final int DATE_DIALOG_ID = 0;
-
     private Button chooseDateButton;
     private TextView tvViewingDate;
     private TextView tvOfferExpiryDate;
@@ -57,32 +52,43 @@ public class AddReportActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_report);
 
+        assignGlobalVariables();
+        createOnClickListeners();
+        setTodaysDate();
+    }
 
 
-        chooseDateButton = findViewById(R.id.chooseViewingDateButton);
-        tvViewingDate = findViewById(R.id.tvViewingDate);
-        tvOfferExpiryDate = findViewById(R.id.tvOfferExpiryDate);
-        interestSpinner = findViewById(R.id.interestSpinner);
-        etOfferPrice = findViewById(R.id.etOfferPrice);
-        chooseExpiryDateButton = findViewById(R.id.chooseExpiryDateButton);
-        etConditionsOfOffer = findViewById(R.id.etConditionsOfOffer);
-        etViewingComments = findViewById(R.id.etViewingComments);
-        addReportButton = findViewById(R.id.addReportButton);
-        cancelButton = findViewById(R.id.cancelButton);
+    private void setTodaysDate(){
+        updateDisplay(tvViewingDate, viewingDate);
+        updateDisplay(tvOfferExpiryDate, offerExpiryDate);
 
-        reportRepository = new ReportRepository(this.getApplication());
 
-        viewingDate = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
 
+        String currentDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(calendar.getTime());
+
+
+        tvViewingDate.setText(
+                new StringBuilder()
+                        // Month is 0 based so add 1
+                        .append(calendar.get(Calendar.DAY_OF_MONTH)).append("/")
+                        .append(calendar.get(Calendar.MONTH) + 1).append("/")
+                        .append(calendar.get(Calendar.YEAR)).append(" "));
+
+        tvOfferExpiryDate.setText(new StringBuilder()
+                // Month is 0 based so add 1
+                .append(calendar.get(Calendar.DAY_OF_MONTH)).append("/")
+                .append(calendar.get(Calendar.MONTH) + 1).append("/")
+                .append(calendar.get(Calendar.YEAR)).append(" "));
+    }
+
+    private void createOnClickListeners(){
         chooseDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDateDialog(tvViewingDate, viewingDate);
             }
         });
-
-
-        offerExpiryDate = Calendar.getInstance();
 
         chooseExpiryDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,8 +97,6 @@ public class AddReportActivity extends AppCompatActivity{
             }
         });
 
-        updateDisplay(tvViewingDate, viewingDate);
-        updateDisplay(tvOfferExpiryDate, offerExpiryDate);
 
         addReportButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,23 +111,27 @@ public class AddReportActivity extends AppCompatActivity{
                 finish();
             }
         });
-
-        Calendar calendar = Calendar.getInstance();
-
-        String currentDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(calendar.getTime());
-        tvViewingDate.setText(
-                new StringBuilder()
-                        // Month is 0 based so add 1
-                        .append(calendar.get(Calendar.DAY_OF_MONTH)).append("/")
-                        .append(calendar.get(Calendar.MONTH) + 1).append("/")
-                        .append(calendar.get(Calendar.YEAR)).append(" "));
-
-        tvOfferExpiryDate.setText(new StringBuilder()
-                // Month is 0 based so add 1
-                .append(calendar.get(Calendar.DAY_OF_MONTH)).append("/")
-                .append(calendar.get(Calendar.MONTH) + 1).append("/")
-                .append(calendar.get(Calendar.YEAR)).append(" "));
     }
+
+    private void assignGlobalVariables(){
+        chooseDateButton = findViewById(R.id.chooseViewingDateButton);
+        tvViewingDate = findViewById(R.id.tvViewingDate);
+        tvOfferExpiryDate = findViewById(R.id.tvOfferExpiryDate);
+        interestSpinner = findViewById(R.id.interestSpinner);
+        etOfferPrice = findViewById(R.id.etOfferPrice);
+        chooseExpiryDateButton = findViewById(R.id.chooseExpiryDateButton);
+        etConditionsOfOffer = findViewById(R.id.etConditionsOfOffer);
+        etViewingComments = findViewById(R.id.etViewingComments);
+        addReportButton = findViewById(R.id.addReportButton);
+        cancelButton = findViewById(R.id.cancelButton);
+        reportRepository = new ReportRepository(this.getApplication());
+        viewingDate = Calendar.getInstance();
+        offerExpiryDate = Calendar.getInstance();
+    }
+
+
+
+    //Date picker related logic
     private DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -171,16 +179,18 @@ public class AddReportActivity extends AppCompatActivity{
         activeDate = null;
     }
 
-
-
     public void showDateDialog(TextView tvDateField, Calendar date){
         activeDateDisplay = tvDateField;
         activeDate = date;
         showDialog(DATE_DIALOG_ID);
     }
 
-    public Boolean areFieldsEmpty(EditText[] requiredETFields){
+    //Date picker related logic
+
+
+    public Boolean areFieldsEmpty(){
         boolean empty = false;
+        EditText[] requiredETFields = {etOfferPrice};
 
         for (EditText field : requiredETFields) {
             if(field.getText().toString().isEmpty()){
@@ -219,33 +229,16 @@ public class AddReportActivity extends AppCompatActivity{
 
     public void addReportButtonClicked(){
 
-        EditText[] requiredETFields = {etOfferPrice};
-        if(areFieldsEmpty(requiredETFields)){
-
+        if(areFieldsEmpty()){
             Toast.makeText(this, "Please fill in required fields", Toast.LENGTH_LONG);
             return;
         }
 
-
         String interest = interestSpinner.getSelectedItem().toString();
-//        String conditionsOfOffer = "";
-//        String viewingcomments = "";
-//
-//
+
         try {
-//
-//            if(etConditionsOfOffer.getText().toString().isEmpty()){
-//                conditionsOfOffer = null;
-//            }
-//            if(etViewingComments.getText().toString().isEmpty()){
-//                viewingcomments = null;
-//            }
-
-
             if(getIntent().hasExtra(PROPERTY_EXTRA)){
-
                  property = getIntent().getParcelableExtra(PROPERTY_EXTRA);
-
             }
 
             Report report = new Report(new java.sql.Date(viewingDate.getTimeInMillis()),interest, Double.parseDouble(etOfferPrice.getText().toString()), new java.sql.Date(offerExpiryDate.getTimeInMillis()), etConditionsOfOffer.getText().toString(),etViewingComments.getText().toString(), property.getId());
@@ -272,14 +265,3 @@ public class AddReportActivity extends AppCompatActivity{
                         .append(date.get(Calendar.YEAR)).append(" "));
     }
 }
-
-
-//    public void chooseExpiryDateButtonClicked(){
-//        DialogFragment expiryDatePicker = new DatePickerFragment();
-//        expiryDatePicker.show(getSupportFragmentManager(), "expiry date picker");
-//    }
-//
-//    public void chooseDateButtonClicked(){
-//        DialogFragment datePicker = new DatePickerFragment();
-//        datePicker.show(getSupportFragmentManager(), "date picker");
-//    }

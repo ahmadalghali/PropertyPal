@@ -13,7 +13,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="900dp"
+        android:layout_height="730dp"
         android:background="#CD1C1C1C"
         android:gravity="top">
 
@@ -321,13 +321,13 @@
             android:layout_height="44dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginBottom="32dp"
             android:background="#1F8EE6"
             android:text="EDIT"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/confirmButton"

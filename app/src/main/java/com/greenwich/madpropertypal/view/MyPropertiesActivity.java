@@ -27,8 +27,8 @@ public class MyPropertiesActivity extends AppCompatActivity {
     private PropertyViewModel propertyViewModel;
     private ImageView advancedSearchImageViewButton;
     private SearchView searchView;
-
     private  MyPropertiesAdapter myPropertiesAdapter;
+    private RecyclerView recyclerView;
 
     private static final String PROPERTY_EXTRA = "com.greenwich.madpropertypal.view.PROPERTY_EXTRA";
 
@@ -37,6 +37,7 @@ public class MyPropertiesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_properties);
 
+//        assignGlobalVariables();
 
         searchView = findViewById(R.id.searchViewProperties);
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
@@ -44,15 +45,12 @@ public class MyPropertiesActivity extends AppCompatActivity {
         searchView.setIconified(false);
         searchView.clearFocus();
 
-        advancedSearchImageViewButton = findViewById(R.id.advancedSettingsImageViewButton);
-        advancedSearchImageViewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               openAdvancedSearchActivity();
-            }
-        });
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        advancedSearchImageViewButton = findViewById(R.id.advancedSettingsImageViewButton);
+
+
+
+        recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         myPropertiesAdapter = new MyPropertiesAdapter();
         recyclerView.setAdapter(myPropertiesAdapter);
@@ -78,6 +76,14 @@ public class MyPropertiesActivity extends AppCompatActivity {
 
             }
         });
+
+        advancedSearchImageViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openAdvancedSearchActivity();
+            }
+        });
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -142,7 +148,6 @@ public class MyPropertiesActivity extends AppCompatActivity {
     public void openPropertyDetailsActivity(Property property){
 
         try{
-
             Intent intent = new Intent(this, PropertyDetails.class);
 
             intent.putExtra(PROPERTY_EXTRA, (Parcelable) property);
@@ -151,8 +156,5 @@ public class MyPropertiesActivity extends AppCompatActivity {
 
             System.out.println("failed to start edit property activity");
         }
-
     }
-
-
 }

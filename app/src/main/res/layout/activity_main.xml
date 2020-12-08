@@ -7,27 +7,28 @@
     tools:context=".view.MainActivity"
     android:background="@drawable/app_background">
 
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#4B5691F6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:layout_marginRight="60dp"/>
+
     <Button
         android:id="@+id/myPropertiesButton"
-        android:layout_width="302dp"
+        android:layout_width="350dp"
         android:layout_height="56dp"
         android:layout_marginTop="16dp"
+        android:background="#FFC107"
         android:text="My Properties"
+        android:textAllCaps="true"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/findPropertiesButton" />
-
-    <Button
-        android:id="@+id/findPropertiesButton"
-        android:layout_width="302dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="16dp"
-        android:text="Find Properties"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addPropertyButton" />
-
 
 
     <TextView
@@ -58,7 +59,7 @@
         app:iss_auto_cycle="true"
         app:iss_delay="0"
         app:iss_error_image="@drawable/grey_bg"
-        app:iss_period="3000"
+        app:iss_period="2000"
         app:iss_placeholder="@drawable/grey_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,10 +67,13 @@
 
     <Button
         android:id="@+id/addPropertyButton"
-        android:layout_width="302dp"
+        android:layout_width="350dp"
         android:layout_height="56dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
+        android:background="#FFC107"
         android:text="Add Property"
+        android:textAllCaps="true"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageSlider" />

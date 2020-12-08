@@ -6,7 +6,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
@@ -33,10 +32,9 @@ public class AdvancedSearchActivity extends AppCompatActivity {
     private NumberPicker numberPickerBedrooms;
     private Button buttonAdvancedSearch;
     private TextView etMatchingProperties;
-
     private PropertyViewModel propertyViewModel;
     private MyPropertiesAdapter myPropertiesAdapter;
-
+    RecyclerView recyclerView;
     private static final String PROPERTY_EXTRA = "com.greenwich.madpropertypal.view.PROPERTY_EXTRA";
 
 
@@ -48,26 +46,28 @@ public class AdvancedSearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advanced_search);
 
+        assignGlobalVariables();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    private void assignGlobalVariables(){
         spinnerCity = findViewById(R.id.spinnerCity);
         spinnerPropertyType = findViewById(R.id.spinnerPropertyType);
         numberPickerBedrooms = findViewById(R.id.numberPickerBedrooms);
         numberPickerBedrooms.setMinValue(1);
         numberPickerBedrooms.setMaxValue(5);
         numberPickerBedrooms.setTextColor(Color.WHITE);
-
-
         etMatchingProperties= findViewById(R.id.etMatchingProperties);
 
-        RecyclerView recyclerView = findViewById(R.id.matchingPropertiesRecyclerView);
+
+
+        recyclerView = findViewById(R.id.matchingPropertiesRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         myPropertiesAdapter = new MyPropertiesAdapter();
         recyclerView.setAdapter(myPropertiesAdapter);
 
         propertyViewModel = new ViewModelProvider(this).get(PropertyViewModel.class);
-
-
-
-
 
 
         buttonAdvancedSearch = findViewById(R.id.buttonAdvancedSearch);
@@ -78,73 +78,14 @@ public class AdvancedSearchActivity extends AppCompatActivity {
                 searchButtonClicked();
             }
         });
+
     }
-
-    public Boolean areFieldsEmpty(){
-        boolean empty = false;
-
-
-        if(spinnerCity.getSelectedItemPosition() == 0 ){
-            spinnerCity.setBackgroundColor(Color.RED);
-            empty = true;
-        }
-
-
-        spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                if(position == 0){
-                    spinnerCity.setBackgroundColor(Color.RED);
-
-                } else {
-                    spinnerCity.setBackgroundColor(Color.WHITE);
-
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                spinnerCity.setBackgroundColor(Color.WHITE);
-            }
-        });
-
-
-        if(spinnerPropertyType.getSelectedItemPosition() == 0 ){
-            spinnerPropertyType.setBackgroundColor(Color.RED);
-            empty = true;
-        }
-
-
-        spinnerPropertyType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                if(position == 0){
-                    spinnerPropertyType.setBackgroundColor(Color.RED);
-
-                } else {
-                    spinnerPropertyType.setBackgroundColor(Color.WHITE);
-
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                spinnerPropertyType.setBackgroundColor(Color.WHITE);
-            }
-        });
-
-        return empty;
-    }
-
 
 
     public void searchButtonClicked(){
 
         String city = spinnerCity.getSelectedItem().toString();
         String propertyType = spinnerPropertyType.getSelectedItem().toString();
-
         int bedroomCount = numberPickerBedrooms.getValue();
 
         if(spinnerCity.getSelectedItemPosition() == 0 ){
@@ -178,14 +119,6 @@ public class AdvancedSearchActivity extends AppCompatActivity {
 
             }
         });
-//        Intent intent = new Intent(this, MyPropertiesActivity.class);
-//
-//        intent.putExtra("city", city);
-//        intent.putExtra("propertyType", propertyType);
-//        intent.putExtra("bedroomCount", bedroomCount);
-//
-//        startActivity(intent);
-
 
     }
 
@@ -194,12 +127,10 @@ public class AdvancedSearchActivity extends AppCompatActivity {
         try{
 
             Intent intent = new Intent(this, PropertyDetails.class);
-
             intent.putExtra(PROPERTY_EXTRA, (Parcelable) property);
             startActivity(intent);
         } catch(Exception e){
 
-            System.out.println("failed to start edit property activity");
         }
 
     }
