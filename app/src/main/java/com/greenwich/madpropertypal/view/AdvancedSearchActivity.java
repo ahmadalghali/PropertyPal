@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -34,7 +36,8 @@ public class AdvancedSearchActivity extends AppCompatActivity {
     private TextView etMatchingProperties;
     private PropertyViewModel propertyViewModel;
     private MyPropertiesAdapter myPropertiesAdapter;
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
+    private CheckBox cbBedroomCountAny;
     private static final String PROPERTY_EXTRA = "com.greenwich.madpropertypal.view.PROPERTY_EXTRA";
 
 
@@ -46,9 +49,37 @@ public class AdvancedSearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advanced_search);
 
+
         assignGlobalVariables();
+        createOnClickListeners();
+
+
     }
 
+    private void createOnClickListeners(){
+        buttonAdvancedSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchButtonClicked();
+            }
+        });
+
+        cbBedroomCountAny.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener() {
+            @RequiresApi(api = Build.VERSION_CODES.Q)
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(cbBedroomCountAny.isChecked()){
+                    numberPickerBedrooms.setEnabled(false);
+                    numberPickerBedrooms.setTextColor(Color.DKGRAY);
+
+                } else {
+                    numberPickerBedrooms.setEnabled(true);
+                    numberPickerBedrooms.setTextColor(Color.WHITE);
+
+                }
+            }
+        });
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     private void assignGlobalVariables(){
@@ -59,7 +90,7 @@ public class AdvancedSearchActivity extends AppCompatActivity {
         numberPickerBedrooms.setMaxValue(5);
         numberPickerBedrooms.setTextColor(Color.WHITE);
         etMatchingProperties= findViewById(R.id.etMatchingProperties);
-
+        cbBedroomCountAny = findViewById(R.id.cbBedroomCountAny);
 
 
         recyclerView = findViewById(R.id.matchingPropertiesRecyclerView);
@@ -69,15 +100,12 @@ public class AdvancedSearchActivity extends AppCompatActivity {
 
         propertyViewModel = new ViewModelProvider(this).get(PropertyViewModel.class);
 
-
         buttonAdvancedSearch = findViewById(R.id.buttonAdvancedSearch);
 
-        buttonAdvancedSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchButtonClicked();
-            }
-        });
+        cbBedroomCountAny.setChecked(true);
+        numberPickerBedrooms.setEnabled(false);
+        numberPickerBedrooms.setTextColor(Color.DKGRAY);
+
 
     }
 
@@ -86,7 +114,7 @@ public class AdvancedSearchActivity extends AppCompatActivity {
 
         String city = spinnerCity.getSelectedItem().toString();
         String propertyType = spinnerPropertyType.getSelectedItem().toString();
-        int bedroomCount = numberPickerBedrooms.getValue();
+        String bedroomCount = "";
 
         if(spinnerCity.getSelectedItemPosition() == 0 ){
             city = "%";
@@ -97,6 +125,11 @@ public class AdvancedSearchActivity extends AppCompatActivity {
             propertyType = "%";
         }
 
+        if(cbBedroomCountAny.isChecked()){
+            bedroomCount = "%";
+        } else {
+            bedroomCount = Integer.toString(numberPickerBedrooms.getValue());
+        }
 
         propertyViewModel.getMatchingProperties(city, propertyType, bedroomCount).observe(this, new Observer<List<Property>>() {
 

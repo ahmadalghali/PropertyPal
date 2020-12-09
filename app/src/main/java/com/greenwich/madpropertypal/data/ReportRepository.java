@@ -64,23 +64,6 @@ public class ReportRepository {
         }
     }
 
-//    public static class GetPropertyReportsByIdAsyncTask extends AsyncTask<Report, Void , Void>{
-//
-//        private ReportDao reportDao;
-//
-//        private GetPropertyReportsByIdAsyncTask(ReportDao reportDao){
-//            this.reportDao = reportDao;
-//
-//        }
-//
-//        @Override
-//        protected Void doInBackground(Report... reports) {
-//
-//            return reportDao.getPropertyReportsById(reports[0].getPropertyId());
-//        }
-//    }
-
-
     public static class UpdateReportAsyncTask extends AsyncTask<Report, Void, Void>{
 
         private ReportDao reportDao;
@@ -128,4 +111,21 @@ public class ReportRepository {
             return null;
         }
     }
+
+    //    public static class GetPropertyReportsByIdAsyncTask extends AsyncTask<Report, Void , Void>{
+//
+//        private ReportDao reportDao;
+//
+//        private GetPropertyReportsByIdAsyncTask(ReportDao reportDao){
+//            this.reportDao = reportDao;
+//
+//        }
+//
+//        @Override
+//        protected Void doInBackground(Report... reports) {
+//
+//            return reportDao.getPropertyReportsById(reports[0].getPropertyId());
+//        }
+//    }
+
 }

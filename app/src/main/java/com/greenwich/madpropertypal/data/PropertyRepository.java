@@ -46,7 +46,7 @@ public class PropertyRepository {
         return allProperties;
     }
 
-    public LiveData<List<Property>> getMatchingProperties(String city, String propertyType, int bedroomCount){
+    public LiveData<List<Property>> getMatchingProperties(String city, String propertyType, String bedroomCount){
         return propertyDao.getMatchingProperties( city,  propertyType,  bedroomCount);
     }
 

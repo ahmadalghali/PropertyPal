@@ -23,25 +23,45 @@ import java.util.List;
 
 public class PropertyReports extends AppCompatActivity {
 
-//    private PropertyReports
     private static final String PROPERTY_EXTRA = "com.greenwich.madpropertypal.view.PROPERTY_EXTRA";
     private Property property;
-
     private FloatingActionButton addReportButton;
     private ReportViewModel reportViewModel;
-
     private TextView tvPropertyName;
-
+    private RecyclerView recyclerView;
+    private PropertyReportsAdapter propertyReportsAdapter;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_property_reports);
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_property_reports);
 
+            assignGlobalVariables();
+            initRecyclerView();
+            createOnClickListeners();
+
+        }
+
+
+    private void assignGlobalVariables(){
         tvPropertyName = findViewById(R.id.etPropertyName);
+        recyclerView = findViewById(R.id.propertyReportsRecyclerView);
+        addReportButton = findViewById(R.id.addReportButton);
 
-        RecyclerView recyclerView = findViewById(R.id.propertyReportsRecyclerView);
+    }
+
+    private void createOnClickListeners(){
+        addReportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addReportButtonClicked();
+            }
+        });
+
+    }
+
+    private void initRecyclerView(){
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        final PropertyReportsAdapter propertyReportsAdapter = new PropertyReportsAdapter();
+        propertyReportsAdapter = new PropertyReportsAdapter();
         recyclerView.setAdapter(propertyReportsAdapter);
 
         reportViewModel = new ViewModelProvider(this).get(ReportViewModel.class);
@@ -62,19 +82,9 @@ public class PropertyReports extends AppCompatActivity {
                 }
             });
         }
-
-
-
-        addReportButton = findViewById(R.id.addReportButton);
-        addReportButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addReportButtonClicked();
-            }
-        });
     }
 
-    public void addReportButtonClicked(){
+    private void addReportButtonClicked(){
         Intent intent = new Intent(this, AddReportActivity.class);
 
         if(getIntent().hasExtra(PROPERTY_EXTRA)){

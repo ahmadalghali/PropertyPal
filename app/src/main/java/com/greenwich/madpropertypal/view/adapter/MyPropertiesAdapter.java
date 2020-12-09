@@ -25,13 +25,7 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
 
     private OnPropertyClickedListener onPropertyClickedListener;
 
-
-
-
-    public MyPropertiesAdapter(){
-
-
-    }
+    public MyPropertiesAdapter(){ }
 
     public void setOnPropertyClickedListener(OnPropertyClickedListener onPropertyClickedListener) {
         this.onPropertyClickedListener = onPropertyClickedListener;

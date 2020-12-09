@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ public class AddPropertyActivity extends AppCompatActivity {
 
 
 
+    private ImageView homeIcon;
     private EditText propertyNameEditText;
     private EditText propertyNumberEditText;
     private Spinner propertyTypeSpinner;
@@ -80,6 +82,7 @@ public class AddPropertyActivity extends AppCompatActivity {
 
 
     private void assignGlobalVariables(){
+        homeIcon = findViewById(R.id.homeIcon);
         propertyNameEditText = findViewById(R.id.etPropertyName);
         propertyNumberEditText = findViewById(R.id.etPropertyNumber);
         propertyTypeSpinner = findViewById(R.id.propertyTypeSpinner);
@@ -118,6 +121,12 @@ public class AddPropertyActivity extends AppCompatActivity {
     private void createOnClickListeners(){
 
 
+        homeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AddPropertyActivity.this, MainActivity.class));
+            }
+        });
 
         localAmenitiesListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override

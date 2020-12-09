@@ -84,7 +84,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView21" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/homeIcon"
         android:layout_width="65dp"
         android:layout_height="69dp"
         android:layout_marginStart="4dp"
@@ -103,7 +103,7 @@
         android:text="Add Report:"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/homeIcon"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -118,7 +118,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/homeIcon" />
 
     <Button
         android:id="@+id/chooseViewingDateButton"
@@ -153,7 +153,7 @@
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:background="#fff"
+        android:background="@drawable/rounded_white"
         android:entries="@array/interest"
         app:layout_constraintStart_toEndOf="@+id/textView23"
         app:layout_constraintTop_toTopOf="@+id/textView23" />
@@ -253,7 +253,7 @@
         android:layout_width="383dp"
         android:layout_height="41dp"
         android:layout_marginTop="32dp"
-        android:background="#FFC107"
+        android:background="@drawable/rounded_corners_yellow"
         android:text="Add Report"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -264,7 +264,7 @@
         android:layout_width="383dp"
         android:layout_height="41dp"
         android:layout_marginTop="16dp"
-        android:background="#A1A1A1"
+        android:background="@drawable/rounded_button_grey"
         android:text="Cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

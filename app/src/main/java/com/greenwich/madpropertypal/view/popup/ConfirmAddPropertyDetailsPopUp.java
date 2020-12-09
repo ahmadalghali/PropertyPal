@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,26 +45,40 @@ public class ConfirmAddPropertyDetailsPopUp extends Activity {
         super.onCreate(savedInstanceState);
 
         //Remove title bar
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-         //Remove notification bar
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//         //Remove notification bar
+//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//
         setContentView(R.layout.activity_confirm_add_property_details_pop_up);
 
 
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-        getWindow().setLayout((int) (width * .9), (int) (height * 0.9));
+        configurePopupProperties();
+
+        assignGlobalVariables();
+
+        createOnClickListeners();
 
 
+        if(getIntent().hasExtra("property")){
 
+            property =  getIntent().getParcelableExtra("property");
 
-        propertyRepository = new PropertyRepository(this.getApplication());
+            displayPropertyDetails();
 
+//            if(property.getLocalAmenities().size() > 0){
+//                String amenitiesFormatted = "";
+//                for(String amenity : property.getLocalAmenities()){
+//                    amenitiesFormatted += (amenity + ", ");
+//                }
+//                System.out.println("amenities  list" + property.getLocalAmenities());
+//                System.out.println("formatted amenities " + amenitiesFormatted);
+//                localAmenities.setText(amenitiesFormatted.substring(0,amenitiesFormatted.length()-2));
+//            }
 
-        editButton = findViewById(R.id.editButton);
-        confirmButton = findViewById(R.id.confirmButton);
+        }
+    }
+
+    private void createOnClickListeners(){
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +91,29 @@ public class ConfirmAddPropertyDetailsPopUp extends Activity {
                 confirmButtonClicked();
             }
         });
+    }
 
+    private void displayPropertyDetails(){
+        propertyName.setText(property.getName());
+        propertyNumber.setText(property.getNumber());
+        propertyType.setText(property.getType());
+        leaseType.setText(property.getLeaseType());
+        size.setText(property.getSize() + " m²");
+        street.setText(property.getStreet());
+        postcode.setText(property.getPostcode());
+        city.setText(property.getCity());
+        bedroomCount.setText("" + property.getBedroomCount());
+        bathroomCount.setText("" + property.getBathroomCount());
+        askingPrice.setText("£" + NumberFormat.getInstance().format(property.getAskingPrice()));
+        description.setText(property.getDescription());
+    }
+
+    private void assignGlobalVariables(){
+        propertyRepository = new PropertyRepository(this.getApplication());
+
+
+        editButton = findViewById(R.id.editButton);
+        confirmButton = findViewById(R.id.confirmButton);
 
 
         propertyName = findViewById(R.id.propertyName);
@@ -97,46 +131,18 @@ public class ConfirmAddPropertyDetailsPopUp extends Activity {
         description = findViewById(R.id.description);
 
 
+    }
 
-
-        if(getIntent().hasExtra("property")){
-
-            property =  getIntent().getParcelableExtra("property");
-
-
-            propertyName.setText(property.getName());
-            propertyNumber.setText(property.getNumber());
-            propertyType.setText(property.getType());
-            leaseType.setText(property.getLeaseType());
-            size.setText(property.getSize() + " m²");
-            street.setText(property.getStreet());
-            postcode.setText(property.getPostcode());
-            city.setText(property.getCity());
-            bedroomCount.setText("" + property.getBedroomCount());
-            bathroomCount.setText("" + property.getBathroomCount());
-            askingPrice.setText("£" + NumberFormat.getInstance().format(property.getAskingPrice()));
-            description.setText(property.getDescription());
-
-
-//            if(property.getLocalAmenities().size() > 0){
-//                String amenitiesFormatted = "";
-//                for(String amenity : property.getLocalAmenities()){
-//                    amenitiesFormatted += (amenity + ", ");
-//                }
-//                System.out.println("amenities  list" + property.getLocalAmenities());
-//                System.out.println("formatted amenities " + amenitiesFormatted);
-//                localAmenities.setText(amenitiesFormatted.substring(0,amenitiesFormatted.length()-2));
-//            }
-
-        }
-
-
-
+    private void configurePopupProperties(){
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+        getWindow().setLayout((int) (width * .9), (int) (height * 0.9));
     }
 
     public void editButtonClicked(){
         finish();
-//        startActivity(new Intent(this, AddPropertyActivity.class));
     }
 
     public void confirmButtonClicked(){
@@ -144,17 +150,15 @@ public class ConfirmAddPropertyDetailsPopUp extends Activity {
         try{
             // persist in database
 
-
             propertyRepository.insert(property);
-            finish();
-            startActivity(new Intent(this, MainActivity.class));
             Toast.makeText(this, "Property saved.", Toast.LENGTH_LONG).show();
+
+//            finish();
+            startActivity(new Intent(this, MainActivity.class));
 
 
         } catch(Exception e){
             Toast.makeText(this, "Error saving property ", Toast.LENGTH_LONG).show();
         }
-
-
     }
 }

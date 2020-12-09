@@ -14,7 +14,8 @@
         <activity android:name=".view.AdvancedSearchActivity"></activity>
         <activity android:name=".view.PropertyReports" />
         <activity android:name=".view.AddReportActivity" />
-        <activity android:name=".view.EditPropertyDetails" />
+        <activity android:name=".view.EditPropertyDetails"
+            android:noHistory="true"/>
         <activity
             android:name=".view.PropertyDetails"
             android:parentActivityName=".view.MyPropertiesActivity" />
@@ -23,10 +24,12 @@
             android:parentActivityName=".view.MainActivity" />
         <activity
             android:name=".view.popup.ConfirmAddPropertyDetailsPopUp"
-            android:theme="@style/PopUpTheme" />
+            android:theme="@style/PopUpTheme"
+            android:noHistory="true"/>
         <activity
             android:name=".view.popup.ConfirmEditPropertyDetailsPopUp"
-            android:theme="@style/PopUpTheme" />
+            android:theme="@style/PopUpTheme"
+            android:noHistory="true"/>
         <activity
             android:name=".view.AddPropertyActivity"
             android:parentActivityName=".view.MainActivity" />

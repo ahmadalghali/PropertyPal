@@ -12,24 +12,31 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.greenwich.madpropertypal.R;
+import com.greenwich.madpropertypal.data.PropertyRepository;
 import com.greenwich.madpropertypal.model.Property;
+import com.greenwich.madpropertypal.view.dialog.DeleteDialog;
 import com.greenwich.madpropertypal.view.popup.ConfirmEditPropertyDetailsPopUp;
 
 import java.util.ArrayList;
 
-public class EditPropertyDetails extends AppCompatActivity {
+public class EditPropertyDetails extends AppCompatActivity implements DeleteDialog.DeleteDialogListener {
 
     private static final String PROPERTY_EXTRA = "com.greenwich.madpropertypal.view.PROPERTY_EXTRA";
 
+
+
+    private PropertyRepository propertyRepository;
 
     private Property property;
     private EditText propertyNameEditText;
@@ -46,6 +53,7 @@ public class EditPropertyDetails extends AppCompatActivity {
     private TextView descriptionTextView;
     private Button discardChangesButton;
     private Button saveButton;
+    private ImageView deleteButton;
 
 
     private String propertyName;
@@ -121,9 +129,20 @@ public class EditPropertyDetails extends AppCompatActivity {
                 finish();
             }
         });
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteButtonClicked();
+            }
+        });
     }
 
     private void assignGlobalVariables(){
+        propertyRepository = new PropertyRepository(this.getApplication());
+
+        deleteButton = findViewById(R.id.deleteButton);
+
         discardChangesButton = findViewById(R.id.discardChangesButton);
         saveButton = findViewById(R.id.saveButton);
         propertyNameEditText   = findViewById(R.id.etPropertyName);
@@ -158,8 +177,30 @@ public class EditPropertyDetails extends AppCompatActivity {
 
                 propertyNameEditText.setText(property.getName());
                 propertyNumberEditText.setText(property.getNumber());
-                propertyTypeSpinner.setSelection(0);
-                leaseTypeSpinner.setSelection(0);
+                switch(property.getType().toLowerCase()){
+                    case "apartment": propertyTypeSpinner.setSelection(1);
+                    break;
+                    case "house": propertyTypeSpinner.setSelection(2);
+                    break;
+                    case "bungalow": propertyTypeSpinner.setSelection(3);
+                    break;
+                    case "flat": propertyTypeSpinner.setSelection(4);
+                    break;
+                    default: propertyTypeSpinner.setSelection(0);
+                    break;
+                }
+                switch(property.getLeaseType().toLowerCase()){
+                    case "free hold": leaseTypeSpinner.setSelection(1);
+                        break;
+                    case "lease hold": leaseTypeSpinner.setSelection(2);
+                        break;
+                    case "short let": leaseTypeSpinner.setSelection(3);
+                        break;
+                    case "long let": leaseTypeSpinner.setSelection(4);
+                        break;
+                    default: leaseTypeSpinner.setSelection(0);
+                        break;
+                }
                 sizeEditText.setText(String.valueOf((int) property.getSize()));
                 streetEditText.setText(property.getStreet());
                 postcodeEditText.setText(property.getPostcode());
@@ -288,6 +329,24 @@ public class EditPropertyDetails extends AppCompatActivity {
 
 
         return empty;
+    }
+
+    private void deleteButtonClicked(){
+
+        DeleteDialog deleteDialog = new DeleteDialog();
+        deleteDialog.show(getSupportFragmentManager(),"Delete dialog");
+    }
+
+    public void deleteProperty(){
+        try{
+            // delete from  database
+            propertyRepository.delete(property);
+            startActivity(new Intent(this, MyPropertiesActivity.class));
+            Toast.makeText(this, "Property deleted successfully.", Toast.LENGTH_SHORT).show();
+
+        } catch(Exception e){
+            Toast.makeText(this, "Error deleting property ", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void addAmenityButtonClicked(){

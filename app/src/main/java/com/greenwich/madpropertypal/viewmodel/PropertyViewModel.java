@@ -46,7 +46,7 @@ public class PropertyViewModel extends AndroidViewModel {
         return  allProperties;
     }
 
-    public LiveData<List<Property>> getMatchingProperties(String city, String propertyType, int bedroomCount) {
+    public LiveData<List<Property>> getMatchingProperties(String city, String propertyType, String bedroomCount) {
         return propertyRepository.getMatchingProperties(city, propertyType, bedroomCount);
     }
 }

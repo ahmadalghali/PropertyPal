@@ -21,8 +21,8 @@
         android:layout_width="350dp"
         android:layout_height="56dp"
         android:layout_marginTop="16dp"
-        android:background="#FFC107"
         android:text="My Properties"
+        android:background="@drawable/rounded_corners_yellow"
         android:textAllCaps="true"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,11 +40,11 @@
         android:text="madPropertyPal"
         android:textColor="#fff"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintStart_toEndOf="@+id/homeIcon"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/homeIcon"
         android:layout_width="65dp"
         android:layout_height="69dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,18 +65,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+<!--    <Button-->
+<!--        android:id="@+id/addPropertyButton"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="56dp"-->
+<!--        android:layout_marginTop="60dp"-->
+<!--        android:background="#FFC107"-->
+<!--        android:text="Add Property"-->
+<!--        android:textAllCaps="true"-->
+<!--        android:textSize="18sp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/imageSlider" />-->
+
     <Button
         android:id="@+id/addPropertyButton"
         android:layout_width="350dp"
         android:layout_height="56dp"
         android:layout_marginTop="60dp"
-        android:background="#FFC107"
+        android:background="@drawable/rounded_corners_yellow"
         android:text="Add Property"
         android:textAllCaps="true"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageSlider" />
+        app:layout_constraintTop_toBottomOf="@+id/imageSlider"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

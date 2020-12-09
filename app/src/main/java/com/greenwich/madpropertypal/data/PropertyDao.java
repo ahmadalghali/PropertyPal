@@ -35,7 +35,7 @@ public interface PropertyDao{
     @Query("DELETE FROM " + PROPERTY_TABLE)
     void deleteAllProperties();
 
-    @Query("SELECT * FROM " + PROPERTY_TABLE + " WHERE city LIKE :city AND type LIKE :propertyType AND bedroomCount = :bedroomCount")
-    LiveData<List<Property>> getMatchingProperties(String city, String propertyType, int bedroomCount);
+    @Query("SELECT * FROM " + PROPERTY_TABLE + " WHERE city LIKE :city AND type LIKE :propertyType AND bedroomCount LIKE :bedroomCount")
+    LiveData<List<Property>> getMatchingProperties(String city, String propertyType, String bedroomCount);
 
 }

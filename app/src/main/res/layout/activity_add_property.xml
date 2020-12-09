@@ -20,7 +20,7 @@
             android:layout_width="385dp"
             android:layout_height="46dp"
             android:layout_marginTop="32dp"
-            android:background="#FFC107"
+            android:background="@drawable/rounded_corners_yellow"
             android:text="Add Property"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.615"
@@ -38,11 +38,11 @@
             android:text="Add Property:"
             android:textColor="#FFFFFF"
             android:textSize="24sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintStart_toEndOf="@+id/homeIcon"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/homeIcon"
             android:layout_width="65dp"
             android:layout_height="69dp"
             android:layout_marginStart="4dp"
@@ -263,7 +263,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="30dp"
-            android:background="#FFFFFF"
+            android:background="@drawable/rounded_white"
             android:entries="@array/propertyTypes"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etPropertyName" />
@@ -275,7 +275,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="30dp"
-            android:background="#FFFFFF"
+            android:background="@drawable/rounded_white"
             android:entries="@array/leaseTypes"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/propertyTypeSpinner" />
@@ -344,7 +344,7 @@
             android:layout_width="385dp"
             android:layout_height="46dp"
             android:layout_marginTop="10dp"
-            android:background="#989898"
+            android:background="@drawable/rounded_button_grey"
             android:text="Cancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
