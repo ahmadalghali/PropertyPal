@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,9 @@ import java.util.List;
 public class PropertyReports extends AppCompatActivity {
 
     private static final String PROPERTY_EXTRA = "com.greenwich.madpropertypal.view.PROPERTY_EXTRA";
+
+    private ImageView homeIcon;
+
     private Property property;
     private FloatingActionButton addReportButton;
     private ReportViewModel reportViewModel;
@@ -43,6 +47,8 @@ public class PropertyReports extends AppCompatActivity {
 
 
     private void assignGlobalVariables(){
+        homeIcon = findViewById(R.id.homeIcon);
+
         tvPropertyName = findViewById(R.id.etPropertyName);
         recyclerView = findViewById(R.id.propertyReportsRecyclerView);
         addReportButton = findViewById(R.id.addReportButton);
@@ -50,6 +56,14 @@ public class PropertyReports extends AppCompatActivity {
     }
 
     private void createOnClickListeners(){
+
+        homeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PropertyReports.this, MainActivity.class));
+            }
+        });
+
         addReportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

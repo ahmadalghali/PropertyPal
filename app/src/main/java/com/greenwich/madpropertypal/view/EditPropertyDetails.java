@@ -35,6 +35,7 @@ public class EditPropertyDetails extends AppCompatActivity implements DeleteDial
     private static final String PROPERTY_EXTRA = "com.greenwich.madpropertypal.view.PROPERTY_EXTRA";
 
 
+    private ImageView homeIcon;
 
     private PropertyRepository propertyRepository;
 
@@ -89,6 +90,14 @@ public class EditPropertyDetails extends AppCompatActivity implements DeleteDial
 
     private void createOnClickListeners(){
 
+
+        homeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(EditPropertyDetails.this, MainActivity.class));
+            }
+        });
+
         localAmenitiesListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
@@ -142,6 +151,7 @@ public class EditPropertyDetails extends AppCompatActivity implements DeleteDial
         propertyRepository = new PropertyRepository(this.getApplication());
 
         deleteButton = findViewById(R.id.deleteButton);
+        homeIcon = findViewById(R.id.homeIcon);
 
         discardChangesButton = findViewById(R.id.discardChangesButton);
         saveButton = findViewById(R.id.saveButton);

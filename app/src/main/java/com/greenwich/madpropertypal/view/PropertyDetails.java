@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.greenwich.madpropertypal.R;
-import com.greenwich.madpropertypal.data.PropertyRepository;
 import com.greenwich.madpropertypal.model.Property;
 
 import java.text.NumberFormat;
@@ -20,6 +20,7 @@ public class PropertyDetails extends AppCompatActivity {
 
     private static final String PROPERTY_EXTRA = "com.greenwich.madpropertypal.view.PROPERTY_EXTRA";
 
+    private ImageView homeIcon;
 
     private Button editButton;
     private Button reportsButton;
@@ -89,6 +90,13 @@ public class PropertyDetails extends AppCompatActivity {
     }
 
     private void createOnClickListeners(){
+
+        homeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PropertyDetails.this, MainActivity.class));
+            }
+        });
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,6 +113,7 @@ public class PropertyDetails extends AppCompatActivity {
     }
 
     private void assignGlobalVariables(){
+        homeIcon = findViewById(R.id.homeIcon);
 
         editButton = findViewById(R.id.editButton);
         reportsButton = findViewById(R.id.reportsButton);

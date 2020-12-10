@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -28,6 +29,8 @@ import com.greenwich.madpropertypal.viewmodel.PropertyViewModel;
 import java.util.List;
 
 public class AdvancedSearchActivity extends AppCompatActivity {
+
+    private ImageView homeIcon;
 
     private Spinner spinnerCity;
     private Spinner spinnerPropertyType;
@@ -57,6 +60,16 @@ public class AdvancedSearchActivity extends AppCompatActivity {
     }
 
     private void createOnClickListeners(){
+
+        homeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdvancedSearchActivity.this, MainActivity.class));
+            }
+        });
+
+
+
         buttonAdvancedSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,6 +96,8 @@ public class AdvancedSearchActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     private void assignGlobalVariables(){
+        homeIcon = findViewById(R.id.homeIcon);
+
         spinnerCity = findViewById(R.id.spinnerCity);
         spinnerPropertyType = findViewById(R.id.spinnerPropertyType);
         numberPickerBedrooms = findViewById(R.id.numberPickerBedrooms);

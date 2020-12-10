@@ -23,6 +23,7 @@ import java.util.List;
 
 public class MyPropertiesActivity extends AppCompatActivity {
 
+    private ImageView homeIcon;
 
     private PropertyViewModel propertyViewModel;
     private ImageView advancedSearchImageViewButton;
@@ -47,6 +48,14 @@ public class MyPropertiesActivity extends AppCompatActivity {
     }
 
     private void createOnClickListeners(){
+
+        homeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MyPropertiesActivity.this, MainActivity.class));
+            }
+        });
+
         advancedSearchImageViewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +105,8 @@ public class MyPropertiesActivity extends AppCompatActivity {
     }
 
     private void assignGlobalVariables(){
+        homeIcon = findViewById(R.id.homeIcon);
+
         searchView = findViewById(R.id.searchViewProperties);
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
         searchView.setFocusable(false);

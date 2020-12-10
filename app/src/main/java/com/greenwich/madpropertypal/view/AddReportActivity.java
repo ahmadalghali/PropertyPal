@@ -2,6 +2,7 @@ package com.greenwich.madpropertypal.view;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +29,7 @@ public class AddReportActivity extends AppCompatActivity{
 
     private static final String PROPERTY_EXTRA = "com.greenwich.madpropertypal.view.PROPERTY_EXTRA";
 
+    private ImageView homeIcon;
     private ReportRepository reportRepository;
     private Property property;
     private Calendar viewingDate;
@@ -111,9 +114,17 @@ public class AddReportActivity extends AppCompatActivity{
                 finish();
             }
         });
+
+        homeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AddReportActivity.this, MainActivity.class));
+            }
+        });
     }
 
     private void assignGlobalVariables(){
+        homeIcon = findViewById(R.id.homeIcon);
         chooseDateButton = findViewById(R.id.chooseViewingDateButton);
         tvViewingDate = findViewById(R.id.tvViewingDate);
         tvOfferExpiryDate = findViewById(R.id.tvOfferExpiryDate);
