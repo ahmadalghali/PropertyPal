@@ -18,9 +18,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
 
+
     private Button addPropertyButton;
     private Button myPropertiesButton;
     private ImageSlider imageSlider;
+    private Button uploadPropertiesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +32,13 @@ public class MainActivity extends AppCompatActivity {
         initImageSlider();
         initButtons();
 
+
     }
 
+
     private void initButtons(){
+
+
         addPropertyButton = findViewById(R.id.addPropertyButton);
 
         addPropertyButton.setOnClickListener(new View.OnClickListener() {

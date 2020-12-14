@@ -40,8 +40,8 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyPropertiesAdapter.MyPropertiesViewHolder holder, int position) {
-
-        Property currentProperty = properties.get(position);
+        holder.setIsRecyclable(false);
+        final Property currentProperty = properties.get(position);
 
         holder.tvPropertyName.setText(currentProperty.getNumber() + " " + currentProperty.getName());
     }
@@ -72,19 +72,24 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
 
                     if(onPropertyClickedListener != null){
                         int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION){
+                        if (position != RecyclerView.NO_POSITION){
                             onPropertyClickedListener.onPropertyClicked(position);
                         }
                     }
                 }
             });
 
+
         }
+
+
     }
 
     public interface OnPropertyClickedListener {
 
+//        void onPropertyClicked(int position);
         void onPropertyClicked(int position);
+
     }
 
     @Override

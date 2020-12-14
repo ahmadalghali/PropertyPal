@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -159,7 +160,13 @@ public class AdvancedSearchActivity extends AppCompatActivity {
                 myPropertiesAdapter.setOnPropertyClickedListener(new MyPropertiesAdapter.OnPropertyClickedListener() {
                     @Override
                     public void onPropertyClicked(int position) {
+
+//                        Log.d("properties", properties.toString());
+
                         Property property = properties.get(position);
+
+
+                        Log.d("properties", property.getName());
 
                         openPropertyDetailsActivity(property);
                     }

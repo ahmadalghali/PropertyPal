@@ -26,6 +26,9 @@ public interface PropertyDao{
     @Query("SELECT * FROM " + PROPERTY_TABLE + " ORDER BY name DESC")
     LiveData<List<Property>> getAllProperties();
 
+    @Query("SELECT * FROM " + PROPERTY_TABLE + " ORDER BY name DESC")
+    List<Property> getAllActualProperties();
+
     @Query("SELECT * FROM " + PROPERTY_TABLE + " WHERE property.id = :propertyId" )
     Property findPropertyById(int propertyId);
 

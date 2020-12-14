@@ -3,7 +3,18 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
-
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude("META-INF/*.kotlin_module")
+        exclude 'mozilla/public-suffix-list.txt'
+    }
 
     dataBinding {
         enabled true
@@ -61,4 +72,13 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha04'
 
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+//    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
+    implementation 'com.android.volley:volley:1.1.0'
+
+
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+//    implementation 'org.apache.httpcomponents.client5:httpclient5:5.0.3'
 }

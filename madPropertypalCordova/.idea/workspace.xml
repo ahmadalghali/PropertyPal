@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f0740781-d615-4fcd-9988-70d6fc0991e3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/com/greenwich/madpropertypal/web/ApiRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/com/greenwich/madpropertypal/web/ApiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/com/greenwich/madpropertypal/web/ApiService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/res/drawable/ic_baseline_cloud_upload_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/greenwich/madpropertypal/data/PropertyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/greenwich/madpropertypal/data/PropertyDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/greenwich/madpropertypal/data/PropertyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/greenwich/madpropertypal/data/PropertyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/greenwich/madpropertypal/view/AdvancedSearchActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/greenwich/madpropertypal/view/AdvancedSearchActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/greenwich/madpropertypal/view/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/greenwich/madpropertypal/view/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/greenwich/madpropertypal/view/MyPropertiesActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/greenwich/madpropertypal/view/MyPropertiesActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/greenwich/madpropertypal/view/adapter/MyPropertiesAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/greenwich/madpropertypal/view/adapter/MyPropertiesAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/res/layout/activity_my_properties.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/res/layout/activity_my_properties.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/res/layout/example_report_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/res/layout/example_report_item.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@9BPAX0MQXB]" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1lbYHPepdL3dBAvq0tvf3klYfCF" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Run Cordova" type="PhoneGap" factoryName="PhoneGap/Cordova">
+      <option name="myExecutable" value="/usr/local/bin/cordova" />
+      <option name="myWorkDir" value="$PROJECT_DIR$" />
+      <option name="myCommand" value="emulate" />
+      <option name="myPassParent" value="true" />
+      <option name="myPlatform" value="android" />
+      <option name="myExtraArgs" value="" />
+      <option name="hasTarget" value="false" />
+      <option name="target" value="" />
+      <method v="2">
+        <option name="PhonegapTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f0740781-d615-4fcd-9988-70d6fc0991e3" name="Default Changelist" comment="" />
+      <created>1607867177921</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1607867177921</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="208" y="41" key="#Project_Structure" timestamp="1607867293370">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="208" y="41" key="#Project_Structure/0.25.1440.875@0.25.1440.875" timestamp="1607867293370" />
+    <state x="184" y="121" width="1071" height="730" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607895202483">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="184" y="121" width="1071" height="730" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.875@0.25.1440.875" timestamp="1607895202483" />
+    <state width="1398" height="361" key="GridCell.Tab.0.bottom" timestamp="1607867776612">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="361" key="GridCell.Tab.0.bottom/0.25.1440.875@0.25.1440.875" timestamp="1607867776612" />
+    <state width="1398" height="361" key="GridCell.Tab.0.center" timestamp="1607867776610">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="361" key="GridCell.Tab.0.center/0.25.1440.875@0.25.1440.875" timestamp="1607867776610" />
+    <state width="1398" height="361" key="GridCell.Tab.0.left" timestamp="1607867776608">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="361" key="GridCell.Tab.0.left/0.25.1440.875@0.25.1440.875" timestamp="1607867776608" />
+    <state width="1398" height="361" key="GridCell.Tab.0.right" timestamp="1607867776611">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="361" key="GridCell.Tab.0.right/0.25.1440.875@0.25.1440.875" timestamp="1607867776611" />
+  </component>
+</project>
